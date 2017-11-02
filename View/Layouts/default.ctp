@@ -31,12 +31,14 @@
                             case 1:
                                 echo $this->Html->link('通報資料', '/admin/issues', array('class' => 'btn btn-default'));
                                 echo $this->Html->link('建立通報', '/admin/issues/add', array('class' => 'btn btn-default'));
+                                echo $this->Html->link('公園', '/admin/parks', array('class' => 'btn btn-default'));
                                 echo $this->Html->link('帳號', '/admin/members', array('class' => 'btn btn-default'));
                                 echo $this->Html->link('群組', '/admin/groups', array('class' => 'btn btn-default'));
                                 break;
                             case 2:
                                 echo $this->Html->link('通報資料', '/admin/issues', array('class' => 'btn btn-default'));
                                 echo $this->Html->link('建立通報', '/admin/issues/add', array('class' => 'btn btn-default'));
+                                echo $this->Html->link('公園', '/admin/parks', array('class' => 'btn btn-default'));
                                 break;
                         }
                     }
