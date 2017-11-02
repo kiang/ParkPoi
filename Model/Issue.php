@@ -6,29 +6,15 @@ class Issue extends AppModel {
 
     public $name = 'Issue';
     public $uploadFields = array(
-        'pic_old', 'pic_new', 'evidence'
+        'pic'
     );
-    public $validate = array(
-        'license' => array(
-            'notBlank' => array(
-                'rule' => array('notBlank'),
-                'on' => 'create',
-            ),
-        ),
-        'name_chinese' => array(
-            'notBlank' => array(
-                'rule' => array('notBlank'),
-                'on' => 'create',
-            ),
-        ),
-        'batch_no' => array(
-            'notBlank' => array(
-                'rule' => array('notBlank'),
-                'on' => 'create',
-            ),
-        ),
-    );
+    public $validate = array();
     public $belongsTo = array(
+        'Park' => array(
+            'foreignKey' => 'park_id',
+            'dependent' => false,
+            'className' => 'Park',
+        ),
         'Member' => array(
             'foreignKey' => 'modified_by',
             'dependent' => false,

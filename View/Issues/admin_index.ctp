@@ -14,16 +14,8 @@ if (!isset($url)) {
     <div class="paging"><?php echo $this->element('paginator'); ?></div>
     <?php
     foreach ($items as $item) {
-        $title = $item['Issue']['license'];
-        if (!empty($item['Issue']['name_english'])) {
-            $title .= ' | ' . $item['Issue']['name_english'];
-        }
-        if (!empty($item['Issue']['name_english'])) {
-            $title .= ' | ' . $item['Issue']['name_chinese'];
-        }
         ?><div class="col-md-4">
-            <strong>藥證：</strong><?php echo $this->Html->link($title, array('action' => 'view', $item['Issue']['id'])); ?>
-            <br /><strong>來源：</strong><?php echo $item['Issue']['info_source']; ?>
+            <strong>公園：</strong><?php echo $this->Html->link($item['Park']['name'], array('action' => 'view', $item['Issue']['id'])); ?>
             <br /><strong>狀態：</strong><?php echo $item['Issue']['status']; ?>
             <br /><strong>時間：</strong><?php echo $item['Issue']['modified']; ?>
             <p><?php
@@ -32,7 +24,7 @@ if (!isset($url)) {
                 }
                 ?></p>
             <?php
-            echo $this->Olc->imgLink('pic_new', $item['Issue']['pic_new']);
+            echo $this->Olc->imgLink('pic', $item['Issue']['pic']);
             ?>    
         </div>
         <?php

@@ -28,19 +28,6 @@
             'div' => 'form-group',
             'class' => 'form-control',
         ));
-        echo $this->Form->input('Member.role', array(
-            'type' => 'radio',
-            'options' => array(
-                '醫院藥師' => '醫院藥師',
-                '社區藥局藥師' => '社區藥局藥師',
-                '診所藥師' => '診所藥師',
-                '藥商' => '藥商',
-                '公學協會' => '公學協會',
-                '其他' => '其他',
-            ),
-            'legend' => '身份',
-            'div' => 'form-group',
-        ));
         ?>
     </fieldset>
     <?php echo $this->Form->end('送出'); ?>

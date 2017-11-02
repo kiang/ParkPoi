@@ -8,83 +8,21 @@
     }
     ?><hr />
     <div class="col-md-12">
-        <div class="col-md-3"><strong>新外觀(上傳資料)</strong></div>
+        <div class="col-md-3"><strong>照片(上傳資料)</strong></div>
         <div class="col-md-9">&nbsp;<?php
-            echo $this->Olc->imgLink('pic_new', $this->data['Issue']['pic_new']);
+            echo $this->Olc->imgLink('pic', $this->data['Issue']['pic_new']);
             ?>&nbsp;
         </div>
-        <div class="col-md-3"><strong>舊外觀(上傳資料)</strong></div>
+        <div class="col-md-3"><strong>公園</strong></div>
         <div class="col-md-9">&nbsp;<?php
-            echo $this->Olc->imgLink('pic_old', $this->data['Issue']['pic_old']);
+            echo $this->Html->link($this->data['Park']['name'], '/parks/view/' . $this->data['Issue']['park_id'], array('target' => '_blank'));
             ?>&nbsp;
         </div>
-        <div class="col-md-3"><strong>許可證字號</strong></div>
-        <div class="col-md-9">&nbsp;<?php
-            if (!empty($this->data['Issue']['license_uuid'])) {
-                echo $this->Html->link($this->data['Issue']['license'], 'http://drugs.olc.tw/licenses/view/' . $this->data['Issue']['license_uuid'], array('target' => '_blank'));
-            } else {
-                echo $this->data['Issue']['license'];
-            }
-            ?>&nbsp;
-        </div>
-        <div class="col-md-3"><strong>編輯者</strong></div>
-        <div class="col-md-9">&nbsp;<?php
-            if ($this->data['Issue']['info_source']) {
-                echo $this->data['Issue']['info_source'];
-            }
-            ?>&nbsp;
-        </div>
-        <div class="col-md-3"><strong>分類</strong></div>
+        <div class="col-md-3"><strong>狀態</strong></div>
         <div class="col-md-9">&nbsp;<?php
             if ($this->data['Issue']['status']) {
-
                 echo $this->data['Issue']['status'];
             }
-            ?>&nbsp;
-        </div>
-        <div class="col-md-3"><strong>藥品英文名</strong></div>
-        <div class="col-md-9">&nbsp;<?php
-            if ($this->data['Issue']['name_english']) {
-
-                echo $this->data['Issue']['name_english'];
-            }
-            ?>&nbsp;
-        </div>
-        <div class="col-md-3"><strong>藥品中文名</strong></div>
-        <div class="col-md-9">&nbsp;<?php
-            if ($this->data['Issue']['name_chinese']) {
-
-                echo $this->data['Issue']['name_chinese'];
-            }
-            ?>&nbsp;
-        </div>
-        <div class="col-md-3"><strong>劑型</strong></div>
-        <div class="col-md-9">&nbsp;<?php
-            if ($this->data['Issue']['dosage_form']) {
-
-                echo $this->data['Issue']['dosage_form'];
-            }
-            ?>&nbsp;
-        </div>
-        <div class="col-md-3"><strong>含量（規格/劑量）</strong></div>
-        <div class="col-md-9">&nbsp;<?php
-            if ($this->data['Issue']['dosage']) {
-
-                echo $this->data['Issue']['dosage'];
-            }
-            ?>&nbsp;
-        </div>
-        <div class="col-md-3"><strong>批號（新變更的批號）</strong></div>
-        <div class="col-md-9">&nbsp;<?php
-            if ($this->data['Issue']['batch_no']) {
-
-                echo $this->data['Issue']['batch_no'];
-            }
-            ?>&nbsp;
-        </div>
-        <div class="col-md-3"><strong>異動證明(公文/廠商說明書等)</strong></div>
-        <div class="col-md-9">&nbsp;<?php
-            echo $this->Olc->imgLink('evidence', $this->data['Issue']['evidence']);
             ?>&nbsp;
         </div>
         <div class="col-md-3"><strong>更新時間</strong></div>

@@ -3,30 +3,15 @@
     <?php echo $this->Form->create('Issue', array('type' => 'file')); ?>
     <div class="Issues form">
         <?php
-        echo $this->Form->hidden('Issue.license_id');
-        echo $this->Form->hidden('Issue.license_uuid');
-        echo $this->Form->input('Issue.license', array(
+        echo $this->Form->hidden('Issue.park_id');
+        echo $this->Form->input('Issue.park', array(
             'type' => 'text',
-            'label' => '* 許可證字號 (必填)',
+            'label' => '* 公園',
             'div' => 'form-group',
             'class' => 'form-control',
             'required' => 'required',
         ));
-        echo '提醒： 打中間6碼或是中文名稱，點選後其他欄位會自動帶入<hr />';
         if (Configure::read('loginMember.group_id') == 1) {
-            echo $this->Form->input('Issue.info_source', array(
-                'type' => 'radio',
-                'options' => array(
-                    '醫院藥師' => '醫院藥師',
-                    '社區藥局藥師' => '社區藥局藥師',
-                    '診所藥師' => '診所藥師',
-                    '藥商' => '藥商',
-                    '公學協會' => '公學協會',
-                    '其他' => '其他',
-                ),
-                'legend' => '編輯者',
-                'div' => 'form-group',
-            ));
             echo $this->Form->input('Issue.status', array(
                 'type' => 'radio',
                 'options' => array(
@@ -37,57 +22,12 @@
                 'div' => 'form-group',
             ));
         }
-        echo $this->Form->input('Issue.name_chinese', array(
-            'label' => '* 藥品中文名 (必填)',
+        echo $this->Form->input('Issue.pic', array(
+            'type' => 'file',
+            'label' => '* 上傳照片 (必填)',
             'div' => 'form-group',
             'class' => 'form-control',
             'required' => 'required',
-        ));
-        echo $this->Form->input('Issue.batch_no', array(
-            'label' => '* 批號（新變更的批號） (必填)',
-            'div' => 'form-group',
-            'class' => 'form-control',
-            'required' => 'required',
-        ));
-        echo $this->Form->input('Issue.pic_new', array(
-            'type' => 'file',
-            'label' => '* 新外觀(上傳) (必填)',
-            'div' => 'form-group',
-            'class' => 'form-control',
-            'required' => 'required',
-        ));
-        echo $this->Form->input('Issue.name_english', array(
-            'label' => '藥品英文名',
-            'div' => 'form-group',
-            'class' => 'form-control',
-        ));
-        echo $this->Form->input('Issue.pic_old', array(
-            'type' => 'file',
-            'label' => '舊外觀(上傳)',
-            'div' => 'form-group',
-            'class' => 'form-control',
-        ));
-        echo $this->Form->input('Issue.dosage_form', array(
-            'label' => '劑型',
-            'div' => 'form-group',
-            'class' => 'form-control',
-        ));
-        echo $this->Form->input('Issue.dosage', array(
-            'label' => '含量（規格/劑量）',
-            'div' => 'form-group',
-            'class' => 'form-control',
-        ));
-        echo $this->Form->input('Issue.evidence', array(
-            'type' => 'file',
-            'label' => '異動證明(公文/廠商說明書等)',
-            'div' => 'form-group',
-            'class' => 'form-control',
-        ));
-        echo $this->Form->input('Issue.evidence_date', array(
-            'type' => 'text',
-            'label' => '異動證明日期',
-            'div' => 'form-group',
-            'class' => 'form-control',
         ));
         echo $this->Form->input('IssueLog.comment', array(
             'type' => 'textarea',

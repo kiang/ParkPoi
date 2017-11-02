@@ -3,7 +3,7 @@
     <head>
         <?php echo $this->Html->charset(); ?>
         <title>
-            藥物外觀異動通報::
+            台南也要特色公園::
             <?php echo $title_for_layout; ?>
         </title><?php
         echo $this->Html->meta('icon');
@@ -20,7 +20,7 @@
     <body>
         <div class="container">
             <div id="header">
-                <h1><?php echo $this->Html->link('藥物外觀異動通報', '/'); ?></h1>
+                <h1><?php echo $this->Html->link('台南也要特色公園', '/'); ?></h1>
             </div>
             <div id="content">
                 <div class="btn-group">
@@ -59,10 +59,9 @@
             </div>
             <div id="footer">
                 ---<br />
-                本網站係為<?php echo $this->Html->link('藥要看', 'http://drugs.olc.tw/', array('target' => '_blank')); ?>
-                及<?php echo $this->Html->link('台灣年輕藥師協會', 'http://typg.org.tw/', array('target' => '_blank')); ?>共同協作之平台，
-                僅供藥師作為外觀疑義之交流與參考，並非原藥品許可證持有者及食品藥物管理署之公開資料。<br />
-                本網站資料僅供交流參考，一切資訊以食品藥物管理署或各藥品許可證持有者公告為準；本網站恕不負資訊正確之一切法律責任。
+                本網站係為<?php echo $this->Html->link('江明宗', 'https://www.facebook.com/k.olc.tw/', array('target' => '_blank')); ?>
+                及<?php echo $this->Html->link('台南也要特色公園', 'https://www.facebook.com/142317883060795/', array('target' => '_blank')); ?>共同開發之平台，
+                本網站資料僅供交流參考，本網站恕不負資訊正確之一切法律責任。
             </div>
         </div>
         <?php
