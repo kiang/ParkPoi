@@ -104,4 +104,14 @@ class ParksController extends AppController {
         return $this->redirect(array('action' => 'index'));
     }
 
+    public function admin_api($term = '') {
+        echo json_encode($this->Park->find('all', array(
+                    'conditions' => array(
+                        'name LIKE' => "%{$term}%",
+                    ),
+                    'limit' => 20,
+        )));
+        exit();
+    }
+
 }

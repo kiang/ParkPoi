@@ -50,27 +50,22 @@
 </div>
 <script>
     $(function () {
-        $('#IssueLicense').autocomplete({
+        $('#IssuePark').autocomplete({
             minLength: 1,
             source: function (request, response) {
-                $.getJSON('https://drugs.olc.tw/api/drugs/index/' + encodeURI(request.term), function (r) {
-                    response($.map(r.data, function (item) {
+                $.getJSON('<?php echo $this->Html->url('/admin/parks/api/'); ?>' + encodeURI(request.term), function (r) {
+                    response($.map(r, function (item) {
                         return {
-                            label: item.License.license_id + ' - ' + item.License.name + ' / ' + item.License.name_english,
-                            value: item.License.license_id,
-                            data: item
+                            label: item.Park.name,
+                            value: item.Park.name,
+                            data: item.Park
                         }
                     }));
                 });
             },
             select: function (event, ui) {
-                $('#IssueNameEnglish').val(ui.item.data.License.name_english);
-                $('#IssueNameChinese').val(ui.item.data.License.name);
-                $('#IssueLicenseUuid').val(ui.item.data.License.id);
+                $('#IssueParkId').val(ui.item.data.id);
             }
-        });
-        $('#IssueEvidenceDate').datepicker({
-            dateFormat: 'yy-mm-dd'
         });
     })
 </script>
