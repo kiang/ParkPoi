@@ -16,6 +16,7 @@ class ParksController extends AppController {
      * @var array
      */
     public $components = array('Paginator');
+    public $paginate = array();
 
     /**
      * admin_index method
@@ -40,6 +41,15 @@ class ParksController extends AppController {
         }
         $options = array('conditions' => array('Park.' . $this->Park->primaryKey => $id));
         $this->set('park', $this->Park->find('first', $options));
+        $this->paginate['Issue'] = array(
+            'limit' => 24,
+            'order' => array('Issue.modified' => 'DESC'),
+        );
+        $scope = array(
+            'Issue.is_active' => 1,
+            'Issue.park_id' => $id,
+        );
+        $this->set('items', $this->paginate($this->Park->Issue, $scope));
     }
 
     /**

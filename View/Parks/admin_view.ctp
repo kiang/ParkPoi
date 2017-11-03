@@ -1,6 +1,28 @@
 <div class="parks view">
     <h2><?php echo h($park['Park']['name']); ?></h2>
-<?php echo $this->Html->link('建立通報', '/admin/issues/add/' . $park['Park']['id'], array('class' => 'btn btn-primary pull-right')); ?>
+    <?php echo $this->Html->link('建立通報', '/admin/issues/add/' . $park['Park']['id'], array('class' => 'btn btn-primary pull-right')); ?>
+    <div id="IssuesAdminIndex">
+        <h2>通報資料</h2>
+        <div class="paging"><?php echo $this->element('paginator'); ?></div>
+        <?php
+        foreach ($items as $item) {
+            ?><div class="col-md-4">
+                <?php echo $this->Html->link($item['Issue']['modified'], '/admin/issues/view/' . $item['Issue']['id']); ?>
+                <p><?php
+                    if (!empty($item['IssueLog']['comment'])) {
+                        echo $item['IssueLog']['comment'];
+                    }
+                    ?></p>
+                <?php
+                echo $this->Olc->imgLink('pic', $item['Issue']['pic']);
+                ?>    
+            </div>
+            <?php
+        }
+        ?>
+        <div class="clearfix"></div>
+        <div class="paging"><?php echo $this->element('paginator'); ?></div>
+    </div>
     <table class="table table-bordered">
         <tr>
             <th>官方編號</th>
