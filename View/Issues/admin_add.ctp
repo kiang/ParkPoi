@@ -3,9 +3,17 @@
     <?php echo $this->Form->create('Issue', array('type' => 'file')); ?>
     <div class="Issues form">
         <?php
-        echo $this->Form->hidden('Issue.park_id');
+        if(!empty($park)) {
+            $parkId = $park['Park']['id'];
+            $parkName = $park['Park']['name'];
+        } else {
+            $parkId = 0;
+            $parkName = '';
+        }
+        echo $this->Form->hidden('Issue.park_id', array('value' => $parkId));
         echo $this->Form->input('Issue.park', array(
             'type' => 'text',
+            'value' => $parkName,
             'label' => '* 公園',
             'div' => 'form-group',
             'class' => 'form-control',

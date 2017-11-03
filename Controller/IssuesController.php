@@ -88,7 +88,7 @@ class IssuesController extends AppController {
         }
     }
 
-    function admin_add() {
+    function admin_add($parkId = 0) {
         if (!empty($this->data)) {
             $toSave = $this->data;
             $toSave['Issue']['is_active'] = 1;
@@ -103,6 +103,11 @@ class IssuesController extends AppController {
             } else {
                 $this->Session->setFlash(__('Something was wrong during saving, please try again', true));
             }
+        } elseif($parkId !== 0) {
+            $parkId = intval($parkId);
+            $this->set('park', $this->Issue->Park->find('first', array(
+                'conditions' => array('Park.id' => $parkId),
+            )));
         }
     }
 
