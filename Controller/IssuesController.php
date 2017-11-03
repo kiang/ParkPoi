@@ -45,6 +45,7 @@ class IssuesController extends AppController {
         $this->paginate['Issue'] = array(
             'limit' => 24,
             'order' => array('Issue.modified' => 'DESC'),
+            'contain' => array('Park'),
         );
         $this->set('items', $this->paginate($this->Issue, $scope));
         $this->set('keywords', implode(' ', $keywords));
@@ -78,6 +79,7 @@ class IssuesController extends AppController {
                 'Issue.is_active' => 1,
             ),
             'contain' => array(
+                'Park',
                 'IssueLog' => array(
                     'order' => array('IssueLog.created' => 'DESC'),
                     'Member'

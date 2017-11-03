@@ -9,21 +9,19 @@
                 <th><?php echo $this->Paginator->sort('cunli'); ?></th>
                 <th><?php echo $this->Paginator->sort('location'); ?></th>
                 <th><?php echo $this->Paginator->sort('modified'); ?></th>
-                <th class="actions"><?php echo __('Actions'); ?></th>
+                <th class="actions">操作</th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($parks as $park): ?>
                 <tr>
-                    <td><?php echo h($park['Park']['name']); ?>&nbsp;</td>
+                    <td><?php echo $this->Html->link(h($park['Park']['name']), array('action' => 'view', $park['Park']['id'])); ?>&nbsp;</td>
                     <td><?php echo h($park['Park']['area']); ?>&nbsp;</td>
                     <td><?php echo h($park['Park']['cunli']); ?>&nbsp;</td>
                     <td><?php echo h($park['Park']['location']); ?>&nbsp;</td>
                     <td><?php echo h($park['Park']['modified']); ?>&nbsp;</td>
                     <td class="actions">
-                        <?php echo $this->Html->link(__('View'), array('action' => 'view', $park['Park']['id'])); ?>
-                        <?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $park['Park']['id'])); ?>
-                        <?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $park['Park']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $park['Park']['id']))); ?>
+                        <?php echo $this->Html->link('建立通報', '/admin/issues/add/' . $park['Park']['id']); ?>
                     </td>
                 </tr>
             <?php endforeach; ?>

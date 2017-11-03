@@ -10,12 +10,12 @@
     <div class="col-md-12">
         <div class="col-md-3"><strong>照片(上傳資料)</strong></div>
         <div class="col-md-9">&nbsp;<?php
-            echo $this->Olc->imgLink('pic', $this->data['Issue']['pic_new']);
+            echo $this->Olc->imgLink('pic', $this->data['Issue']['pic']);
             ?>&nbsp;
         </div>
         <div class="col-md-3"><strong>公園</strong></div>
         <div class="col-md-9">&nbsp;<?php
-            echo $this->Html->link($this->data['Park']['name'], '/parks/view/' . $this->data['Issue']['park_id'], array('target' => '_blank'));
+            echo $this->Html->link($this->data['Park']['name'], '/admin/parks/view/' . $this->data['Issue']['park_id'], array('target' => '_blank'));
             ?>&nbsp;
         </div>
         <div class="col-md-3"><strong>狀態</strong></div>
