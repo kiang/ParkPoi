@@ -1,6 +1,7 @@
 <?php
 
 App::uses('AppController', 'Controller');
+App::uses('Sanitize', 'Utility');
 
 /**
  * Parks Controller
@@ -23,9 +24,27 @@ class ParksController extends AppController {
      *
      * @return void
      */
-    public function admin_index() {
-        $this->Park->recursive = 0;
-        $this->set('parks', $this->Paginator->paginate());
+    public function admin_index($name = null) {
+        $keywords = array();
+        $scope = array();
+        if (!empty($name)) {
+            $name = Sanitize::clean($name);
+            $keywords = explode(' ', $name);
+            $keywordCount = 0;
+            foreach ($keywords AS $k => $keyword) {
+                if (++$keywordCount < 5) {
+                    $scope[]['OR'] = array(
+                        'Park.name LIKE' => "%{$keyword}%",
+                        'Park.location LIKE' => "%{$keyword}%",
+                    );
+                } else {
+                    unset($keywords[$k]);
+                }
+            }
+        }
+        $this->set('keywords', implode(' ', $keywords));
+        
+        $this->set('parks', $this->Paginator->paginate($this->Park, $scope));
     }
 
     /**

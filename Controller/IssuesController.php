@@ -33,9 +33,8 @@ class IssuesController extends AppController {
             foreach ($keywords AS $k => $keyword) {
                 if (++$keywordCount < 5) {
                     $scope[]['OR'] = array(
-                        'Issue.license LIKE' => "%{$keyword}%",
-                        'Issue.name_english LIKE' => "%{$keyword}%",
-                        'Issue.name_chinese LIKE' => "%{$keyword}%",
+                        'Park.name LIKE' => "%{$keyword}%",
+                        'Park.location LIKE' => "%{$keyword}%",
                     );
                 } else {
                     unset($keywords[$k]);

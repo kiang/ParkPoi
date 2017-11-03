@@ -1,5 +1,11 @@
 <div class="parks index">
     <h2>公園</h2>
+    <div class="pull-right col-md-6">
+        <form id="ParkKeywordsForm">
+        <div class="col-md-6"><input type="text" class="form-control" id="ParkKeywords" value="<?php echo $keywords; ?>" /></div>
+        <a href="#" class="btn btn-primary" id="ParkKeywordsBtn">搜尋</a>
+        </form>
+    </div>
     <div class="paging"><?php echo $this->element('paginator'); ?></div>
     <table cellpadding="0" cellspacing="0" class="table table-bordered">
         <thead>
@@ -29,3 +35,15 @@
     </table>
     <div class="paging"><?php echo $this->element('paginator'); ?></div>
 </div>
+<script>
+    $(function () {
+        $('#ParkKeywordsForm').submit(function() {
+            location.href = '<?php echo $this->Html->url('/admin/parks/index/'); ?>' + encodeURI($('#ParkKeywords').val());
+            return false;
+        })
+        $('#ParkKeywordsBtn').click(function () {
+            location.href = '<?php echo $this->Html->url('/admin/parks/index/'); ?>' + encodeURI($('#ParkKeywords').val());
+            return false;
+        });
+    })
+</script>
