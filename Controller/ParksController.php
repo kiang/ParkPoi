@@ -18,6 +18,30 @@ class ParksController extends AppController {
      */
     public $components = array('Paginator');
     public $paginate = array();
+    
+    public function beforeFilter() {
+        parent::beforeFilter();
+        if (isset($this->Auth)) {
+            $this->Auth->allow(array('map', 'points'));
+        }
+    }
+    
+    public function points() {
+        echo json_encode($this->Park->find('all', array(
+            'fields' => array(
+                'Park.id', 'Park.name', 'Park.longitude', 'Park.latitude',
+            ),
+            'conditions' => array(
+                'Park.longitude IS NOT NULL',
+            )
+        )));
+        exit();
+    }
+    
+    public function map() {
+        
+    }
+    
 
     /**
      * admin_index method
