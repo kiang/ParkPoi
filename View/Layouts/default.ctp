@@ -64,6 +64,7 @@
                 本網站係為<?php echo $this->Html->link('江明宗', 'https://www.facebook.com/k.olc.tw/', array('target' => '_blank')); ?>
                 及<?php echo $this->Html->link('台南也要特色公園', 'https://www.facebook.com/142317883060795/', array('target' => '_blank')); ?>共同開發之平台，
                 本網站資料僅供交流參考，本網站恕不負資訊正確之一切法律責任。
+                <div class="pull-right"><a href="https://github.com/kiang/ParkPoi" target="_blank">本系統原始碼</a></div>
             </div>
         </div>
         <?php

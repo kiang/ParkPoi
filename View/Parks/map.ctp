@@ -175,19 +175,7 @@
         layers: [baseLayer],
         overlays: [popup],
         target: 'map',
-        view: appView,
-        controls: ol.control.defaults().extend([
-            new app.Button({
-                bClassName: 'app-button1',
-                bText: '原',
-                bHref: 'https://github.com/kiang/TainanParks'
-            }),
-            new app.Button({
-                bClassName: 'app-button2',
-                bText: '力',
-                bHref: 'https://npptw.org/tainan'
-            })
-        ])
+        view: appView
     });
 
     var geolocation = new ol.Geolocation({
