@@ -203,13 +203,17 @@
         })
     }));
 
+    var geolocationMapped = false;
     geolocation.on('change:position', function () {
         var coordinates = geolocation.getPosition();
         positionFeature.setGeometry(coordinates ?
                 new ol.geom.Point(coordinates) : null);
-        var v = map.getView();
-        v.setCenter(coordinates);
-        v.setZoom(14);
+        if (false === geolocationMapped) {
+            geolocationMapped = true;
+            var v = map.getView();
+            v.setCenter(coordinates);
+            v.setZoom(14);
+        }
     });
 
     new ol.layer.Vector({
