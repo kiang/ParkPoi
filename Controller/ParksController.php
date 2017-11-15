@@ -39,7 +39,7 @@ class ParksController extends AppController {
     }
     
     public function map() {
-        
+        $this->layout = 'map';
     }
     
 

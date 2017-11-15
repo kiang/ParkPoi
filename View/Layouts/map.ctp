@@ -52,10 +52,12 @@
                     }
                     ?>
                 </div>
-
                 <?php echo $this->Session->flash(); ?>
                 <div id="viewContent"><?php echo $content_for_layout; ?></div>
             </div>
+        </div>
+        <div id="map" style="height: 90%; width: 100%;"></div>
+        <div class="container">
             <div id="footer">
                 ---<br />
                 本網站係為<?php echo $this->Html->link('江明宗', 'https://www.facebook.com/k.olc.tw/', array('target' => '_blank')); ?>
