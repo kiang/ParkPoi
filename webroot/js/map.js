@@ -124,10 +124,8 @@ new ol.layer.Vector({
         features: [positionFeature]
     })
 });
-/**
- * Add a click handler to the map to render the popup.
- */
-map.on('singleclick', function (evt) {
+
+function mapClicked(evt) {
     var coordinate = evt.coordinate;
     var message = '';
     var pointFound = false;
@@ -154,8 +152,17 @@ map.on('singleclick', function (evt) {
         popup.setPosition(undefined);
         closer.blur();
     }
+}
 
+/**
+ * Add a click handler to the map to render the popup.
+ */
+map.on('singleclick', function (e) {
+    mapClicked(e);
 });
+map.on('touchend', function (e) {
+    mapClicked(e);
+})
 $.getJSON(baseUrl + '/parks/points', function (p) {
     var features = [];
     for (k in p) {
