@@ -125,32 +125,38 @@ new ol.layer.Vector({
     })
 });
 
+var clickedTriggered = false;
+
 function mapClicked(evt) {
-    var coordinate = evt.coordinate;
-    var message = '';
-    var pointFound = false;
-    map.forEachFeatureAtPixel(evt.pixel, function (feature) {
-        if (false === pointFound) {
-            var p = feature.getProperties();
-            if (p.parkId) {
-                pointFound = true;
-                message += '<h4>' + p.name + '</h4><div class="btn-group">';
-                message += '<a href="' + baseUrl + '/admin/issues/add/' + p.parkId + '" class="btn btn-default">建立通報</a>';
-                message += '<a href="' + baseUrl + '/admin/parks/view/' + +p.parkId + '" class="btn btn-default">檢視公園</a>';
-                message += '</div>';
-                coordinate = p.geometry.getCoordinates();
+    if (false === clickedTriggered) {
+        clickedTriggered = true;
+        var coordinate = evt.coordinate;
+        var message = '';
+        var pointFound = false;
+        map.forEachFeatureAtPixel(evt.pixel, function (feature) {
+            if (false === pointFound) {
+                var p = feature.getProperties();
+                if (p.parkId) {
+                    pointFound = true;
+                    message += '<h4>' + p.name + '</h4><div class="btn-group">';
+                    message += '<a href="' + baseUrl + '/admin/issues/add/' + p.parkId + '" class="btn btn-default">建立通報</a>';
+                    message += '<a href="' + baseUrl + '/admin/parks/view/' + +p.parkId + '" class="btn btn-default">檢視公園</a>';
+                    message += '</div>';
+                    coordinate = p.geometry.getCoordinates();
+                }
             }
+        });
+        if (message !== '') {
+            var v = map.getView();
+            v.setCenter(coordinate);
+            v.setZoom(15);
+            content.innerHTML = message;
+            popup.setPosition(coordinate);
+        } else {
+            popup.setPosition(undefined);
+            closer.blur();
         }
-    });
-    if (message !== '') {
-        var v = map.getView();
-        v.setCenter(coordinate);
-        v.setZoom(15);
-        content.innerHTML = message;
-        popup.setPosition(coordinate);
-    } else {
-        popup.setPosition(undefined);
-        closer.blur();
+        clickedTriggered = false;
     }
 }
 
