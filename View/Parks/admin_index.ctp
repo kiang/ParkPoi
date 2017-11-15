@@ -35,15 +35,5 @@
     </table>
     <div class="paging"><?php echo $this->element('paginator'); ?></div>
 </div>
-<script>
-    $(function () {
-        $('#ParkKeywordsForm').submit(function() {
-            location.href = '<?php echo $this->Html->url('/admin/parks/index/'); ?>' + encodeURI($('#ParkKeywords').val());
-            return false;
-        })
-        $('#ParkKeywordsBtn').click(function () {
-            location.href = '<?php echo $this->Html->url('/admin/parks/index/'); ?>' + encodeURI($('#ParkKeywords').val());
-            return false;
-        });
-    })
-</script>
+<?php
+$this->Html->script('view/parks/index', array('inline' => false));
