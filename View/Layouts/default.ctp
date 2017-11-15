@@ -69,6 +69,9 @@
             echo $this->element('sql_dump');
         }
         ?>
+        <script>
+            var baseUrl = '<?php echo $this->Html->url('/', true); ?>';
+        </script>
         <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"></script>
         <script src="https://openlayers.org/en/v4.2.0/build/ol.js"></script>
         <?php

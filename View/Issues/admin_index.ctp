@@ -33,15 +33,5 @@ if (!isset($url)) {
     <div class="clearfix"></div>
     <div class="paging"><?php echo $this->element('paginator'); ?></div>
 </div>
-<script>
-    $(function () {
-        $('#IssueKeywordsForm').submit(function() {
-            location.href = '<?php echo $this->Html->url('/admin/issues/index/'); ?>' + encodeURI($('#IssueKeywords').val());
-            return false;
-        })
-        $('#IssueKeywordsBtn').click(function () {
-            location.href = '<?php echo $this->Html->url('/admin/issues/index/'); ?>' + encodeURI($('#IssueKeywords').val());
-            return false;
-        });
-    })
-</script>
+<?php
+$this->Html->script('view/issues/index', array('inline' => false));
