@@ -148,7 +148,6 @@ function mapClicked(evt) {
         if (message !== '') {
             var v = map.getView();
             v.setCenter(coordinate);
-            v.setZoom(15);
             content.innerHTML = message;
             popup.setPosition(coordinate);
         } else {
