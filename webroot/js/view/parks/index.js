@@ -1,10 +1,10 @@
 $(function () {
-    $('#IssueKeywordsForm').submit(function () {
-        location.href = baseUrl + '/admin/parks/index/' + encodeURI($('#IssueKeywords').val());
+    $('#ParkKeywordsForm').submit(function () {
+        location.href = baseUrl + '/admin/parks/index/' + encodeURI($('#ParkKeywords').val());
         return false;
     })
-    $('#IssueKeywordsBtn').click(function () {
-        location.href = baseUrl + '/admin/parks/index/' + encodeURI($('#IssueKeywords').val());
+    $('#ParkKeywordsBtn').click(function () {
+        location.href = baseUrl + '/admin/parks/index/' + encodeURI($('#ParkKeywords').val());
         return false;
     });
 })
