@@ -29,9 +29,8 @@ var layerGreen = new ol.style.Style({
             width: 2
         }),
         points: 5,
-        radius: 10,
-        radius2: 4,
-        angle: 0
+        radius: 18,
+        radius2: 10
     })
 });
 var projection = ol.proj.get('EPSG:3857');
