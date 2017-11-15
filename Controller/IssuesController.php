@@ -100,7 +100,7 @@ class IssuesController extends AppController {
             $this->Issue->create();
             if ($this->Issue->save($toSave)) {
                 $this->Session->setFlash(__('The data has been saved', true));
-                $this->redirect(array('action' => 'index'));
+                $this->redirect('/admin/parks/view/' . $toSave['Issue']['park_id']);
             } else {
                 $this->Session->setFlash(__('Something was wrong during saving, please try again', true));
             }
