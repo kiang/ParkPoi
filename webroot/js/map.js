@@ -165,7 +165,7 @@ function mapClicked(evt) {
 map.on('singleclick', function (e) {
     mapClicked(e);
 });
-map.on('touchend', function (e) {
+map.on('touchstart', function (e) {
     mapClicked(e);
 })
 $.getJSON(baseUrl + '/parks/points', function (p) {
