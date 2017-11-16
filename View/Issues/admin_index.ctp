@@ -16,7 +16,7 @@ if (!isset($url)) {
     foreach ($items as $item) {
         ?><div class="col-md-4">
             <strong>公園：</strong><?php echo $this->Html->link($item['Park']['name'], array('action' => 'view', $item['Issue']['id'])); ?>
-            <br /><strong>狀態：</strong><?php echo $item['Issue']['status']; ?>
+            <br /><strong>標題：</strong><?php echo $this->Html->link($item['Issue']['title'], array('action' => 'view', $item['Issue']['id'])); ?>
             <br /><strong>時間：</strong><?php echo $item['Issue']['modified']; ?>
             <p><?php
                 if (!empty($item['IssueLog']['comment'])) {

@@ -7,12 +7,7 @@
         <?php
         foreach ($items as $item) {
             ?><div class="col-md-4">
-                <?php echo $this->Html->link($item['Issue']['modified'], '/admin/issues/view/' . $item['Issue']['id']); ?>
-                <p><?php
-                    if (!empty($item['IssueLog']['comment'])) {
-                        echo $item['IssueLog']['comment'];
-                    }
-                    ?></p>
+                <?php echo $this->Html->link("{$item['Issue']['title']} - {$item['Issue']['modified']}", '/admin/issues/view/' . $item['Issue']['id']); ?>
                 <?php
                 echo $this->Olc->imgLink('pic', $item['Issue']['pic']);
                 ?>    

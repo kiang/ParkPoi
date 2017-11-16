@@ -30,6 +30,12 @@
                 'div' => 'form-group',
             ));
         }
+        echo $this->Form->input('Issue.title', array(
+            'type' => 'text',
+            'label' => '標題',
+            'div' => 'form-group',
+            'class' => 'form-control',
+        ));
         echo $this->Form->input('Issue.pic', array(
             'type' => 'file',
             'label' => '* 上傳照片 (必填)',

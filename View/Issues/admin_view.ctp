@@ -8,6 +8,13 @@
     }
     ?><hr />
     <div class="col-md-12">
+        <div class="col-md-3"><strong>標題</strong></div>
+        <div class="col-md-9">&nbsp;<?php
+            if ($this->data['Issue']['title']) {
+                echo $this->data['Issue']['title'];
+            }
+            ?>&nbsp;
+        </div>
         <div class="col-md-3"><strong>照片(上傳資料)</strong></div>
         <div class="col-md-9">&nbsp;<?php
             echo $this->Olc->imgLink('pic', $this->data['Issue']['pic']);
