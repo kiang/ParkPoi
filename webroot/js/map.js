@@ -175,7 +175,7 @@ function mapClicked(evt) {
 /**
  * Add a click handler to the map to render the popup.
  */
-map.on('singleclick', function (e) {
+map.on('click', function (e) {
     mapClicked(e);
 });
 map.on('touchstart', function (e) {
