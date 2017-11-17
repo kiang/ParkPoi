@@ -27,14 +27,20 @@ class ParksController extends AppController {
     }
     
     public function points() {
-        echo json_encode($this->Park->find('all', array(
+        $parks = $this->Park->find('all', array(
             'fields' => array(
                 'Park.id', 'Park.name', 'Park.longitude', 'Park.latitude',
             ),
             'conditions' => array(
                 'Park.longitude IS NOT NULL',
-            )
-        )));
+            ),
+            'contain' => array(
+                'Issue' => array(
+                    'fields' => array('Issue.id')
+                ),
+            ),
+        ));
+        echo json_encode($parks);
         exit();
     }
     

@@ -19,6 +19,20 @@ app.Button = function (opt_options) {
     });
 }
 ol.inherits(app.Button, ol.control.Control);
+var layerYellow = new ol.style.Style({
+    image: new ol.style.RegularShape({
+        fill: new ol.style.Fill({
+            color: 'rgba(200,200,0,0.6)'
+        }),
+        stroke: new ol.style.Stroke({
+            color: 'rgba(0,0,0,0.3)',
+            width: 2
+        }),
+        points: 5,
+        radius: 18,
+        radius2: 10
+    })
+});
 var layerGreen = new ol.style.Style({
     image: new ol.style.RegularShape({
         fill: new ol.style.Fill({
@@ -175,7 +189,11 @@ $.getJSON(baseUrl + '/parks/points', function (p) {
             parkId: p[k].Park.id,
             name: p[k].Park.name
         });
-        f.setStyle(layerGreen);
+        if(p[k].Issue.length > 0) {
+            f.setStyle(layerGreen);
+        } else {
+            f.setStyle(layerYellow);
+        }
         features.push(f);
     }
     var vectorLayer = new ol.layer.Vector({
