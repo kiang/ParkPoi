@@ -102,6 +102,7 @@ class MembersController extends AppController {
                 }
             }
         }
+        $this->Session->delete('fbToken');
         $loginUrl = $fbHelper->getLoginUrl(Router::url('/members/fb', true), $permissions);
         $this->redirect($loginUrl);
     }
