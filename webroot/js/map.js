@@ -109,7 +109,7 @@ geolocation.on('error', function (error) {
 var positionFeature = new ol.Feature();
 positionFeature.setStyle(new ol.style.Style({
     image: new ol.style.Circle({
-        radius: 6,
+        radius: 15,
         fill: new ol.style.Fill({
             color: '#3399CC'
         }),
@@ -156,6 +156,8 @@ function mapClicked(evt) {
                     message += '<a href="' + baseUrl + '/admin/parks/view/' + +p.parkId + '" class="btn btn-default">檢視公園</a>';
                     message += '</div>';
                     coordinate = p.geometry.getCoordinates();
+                } else {
+                    message += '<h4>你的所在位置</h4>';
                 }
             }
         });
