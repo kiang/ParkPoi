@@ -65,12 +65,17 @@ class MembersController extends AppController {
                 $response = $this->fb->get('/me?fields=id,name,email', $accessToken);
             } catch (Facebook\Exceptions\FacebookResponseException $e) {
                 pr('Graph returned an error: ' . $e->getMessage());
-                exit;
             } catch (Facebook\Exceptions\FacebookSDKException $e) {
                 pr('Facebook SDK returned an error: ' . $e->getMessage());
-                exit;
             }
-            $values = $response->getDecodedBody();
+            if (empty($response)) {
+                $this->Session->delete('fbToken');
+                $loginUrl = $fbHelper->getLoginUrl(Router::url('/members/fb', true), $permissions);
+                $this->redirect($loginUrl);
+            } else {
+                $values = $response->getDecodedBody();
+            }
+            
             if (!empty($values['id'])) {
                 $member = $this->Member->find('first', array(
                     'conditions' => array(
@@ -102,9 +107,6 @@ class MembersController extends AppController {
                 }
             }
         }
-        $this->Session->delete('fbToken');
-        $loginUrl = $fbHelper->getLoginUrl(Router::url('/members/fb', true), $permissions);
-        $this->redirect($loginUrl);
     }
 
     public function logout() {
@@ -174,7 +176,7 @@ class MembersController extends AppController {
             }
         }
     }
-    
+
     public function edit() {
         if (!empty($this->request->data)) {
             $this->request->data['Member']['id'] = $this->loginMember['id'];
@@ -189,7 +191,7 @@ class MembersController extends AppController {
         if (empty($this->request->data)) {
             $this->request->data = $this->Member->read(null, $this->loginMember['id']);
         }
-        if(isset($this->request->data['Member']['password'])) {
+        if (isset($this->request->data['Member']['password'])) {
             $this->request->data['Member']['password'] = '';
         }
     }
