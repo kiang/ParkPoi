@@ -52,8 +52,8 @@ class MembersController extends AppController {
         if (is_object($accessToken)) {
             $v = $accessToken->getValue();
         }
+        $permissions = ['email']; // Optional permissions
         if (empty($v)) {
-            $permissions = ['email']; // Optional permissions
             $loginUrl = $fbHelper->getLoginUrl(Router::url('/members/fb', true), $permissions);
             $this->redirect($loginUrl);
         } else {
@@ -102,6 +102,8 @@ class MembersController extends AppController {
                 }
             }
         }
+        $loginUrl = $fbHelper->getLoginUrl(Router::url('/members/fb', true), $permissions);
+        $this->redirect($loginUrl);
     }
 
     public function logout() {
