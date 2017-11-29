@@ -40,7 +40,7 @@ var map = new ol.Map({
 var redPoint = new ol.Feature();
 redPoint.setStyle(new ol.style.Style({
     image: new ol.style.Circle({
-        radius: 5,
+        radius: 15,
         fill: new ol.style.Fill({
             color: '#FF99CC'
         }),
@@ -62,7 +62,7 @@ geolocation.on('error', function (error) {
 var bluePoint = new ol.Feature();
 bluePoint.setStyle(new ol.style.Style({
     image: new ol.style.Circle({
-        radius: 5,
+        radius: 15,
         fill: new ol.style.Fill({
             color: '#3399CC'
         }),
