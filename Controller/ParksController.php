@@ -111,7 +111,7 @@ class ParksController extends AppController {
             $this->Park->create();
             if ($this->Park->save($this->request->data)) {
                 $this->Flash->success(__('The park has been saved.'));
-                return $this->redirect(array('action' => 'index'));
+                return $this->redirect(array('action' => 'view', $this->Park->getInsertID()));
             } else {
                 $this->Flash->error(__('The park could not be saved. Please, try again.'));
             }
@@ -132,7 +132,7 @@ class ParksController extends AppController {
         if ($this->request->is(array('post', 'put'))) {
             if ($this->Park->save($this->request->data)) {
                 $this->Flash->success(__('The park has been saved.'));
-                return $this->redirect(array('action' => 'index'));
+                return $this->redirect(array('action' => 'view', $this->request->data['Park']['id']));
             } else {
                 $this->Flash->error(__('The park could not be saved. Please, try again.'));
             }

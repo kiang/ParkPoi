@@ -18,6 +18,7 @@
         <div class="clearfix"></div>
         <div class="paging"><?php echo $this->element('paginator'); ?></div>
     </div>
+    <div class="col-md-12" id="parkMap" style="height: 300px;"></div>
     <table class="table table-bordered">
         <tr>
             <th>官方編號</th>
@@ -62,3 +63,6 @@
     </table>
 </div>
 <?php echo $this->Html->link('建立通報', '/admin/issues/add/' . $park['Park']['id'], array('class' => 'btn btn-primary')); ?>
+<?php
+echo $this->Html->scriptBlock("var basePoint = [{$park['Park']['longitude']}, {$park['Park']['latitude']}];", array('inline' => false));
+$this->Html->script('view/parks/view', array('inline' => false));

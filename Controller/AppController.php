@@ -5,7 +5,7 @@ App::uses('Controller', 'Controller');
 class AppController extends Controller {
 
     public $helpers = array('Html', 'Form', 'Js', 'Session', 'Olc');
-    public $components = array('Acl', 'Auth', 'RequestHandler', 'Session');
+    public $components = array('Acl', 'Auth', 'RequestHandler', 'Session', 'Flash');
     public $fb, $loginMember;
 
     public function beforeFilter() {

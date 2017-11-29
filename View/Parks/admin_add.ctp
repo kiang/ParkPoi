@@ -1,21 +1,91 @@
-<div class="parks form">
+<div>
+    <h3>建立公園</h3>
     <?php echo $this->Form->create('Park'); ?>
-    <fieldset>
-        <legend><?php echo __('Add Park'); ?></legend>
+    <div class="Parks form">
+        <div class="col-md-12" id="parkMap" style="height: 300px;"></div>
         <?php
-        echo $this->Form->input('name');
-        echo $this->Form->input('sno');
-        echo $this->Form->input('area');
-        echo $this->Form->input('cunli');
-        echo $this->Form->input('size');
-        echo $this->Form->input('class');
-        echo $this->Form->input('location');
-        echo $this->Form->input('longitude');
-        echo $this->Form->input('latitude');
-        echo $this->Form->input('admin');
-        echo $this->Form->input('land_zone');
-        echo $this->Form->input('note');
+        echo $this->Form->input('name', array(
+            'type' => 'text',
+            'label' => '名稱',
+            'div' => 'form-group',
+            'class' => 'form-control',
+            'required' => 'required',
+        ));
+        echo $this->Form->input('location', array(
+            'type' => 'text',
+            'label' => '座落位置',
+            'div' => 'form-group',
+            'class' => 'form-control',
+            'required' => 'required',
+        ));
+        echo $this->Form->input('longitude', array(
+            'type' => 'text',
+            'label' => '經度',
+            'div' => 'form-group col-md-6',
+            'class' => 'form-control',
+            'required' => 'required',
+        ));
+        echo $this->Form->input('latitude', array(
+            'type' => 'text',
+            'label' => '緯度',
+            'div' => 'form-group col-md-6',
+            'class' => 'form-control',
+            'required' => 'required',
+        ));
+        echo $this->Form->submit('送出', array('class' => 'btn btn-primary')) . '<hr />';
+        echo $this->Form->input('sno', array(
+            'type' => 'text',
+            'label' => '官方編號',
+            'div' => 'form-group col-md-6',
+            'class' => 'form-control',
+        ));
+        echo $this->Form->input('area', array(
+            'type' => 'text',
+            'label' => '鄉鎮市區',
+            'div' => 'form-group col-md-6',
+            'class' => 'form-control',
+        ));
+        echo $this->Form->input('cunli', array(
+            'type' => 'text',
+            'label' => '村里',
+            'div' => 'form-group col-md-6',
+            'class' => 'form-control',
+        ));
+        echo $this->Form->input('size', array(
+            'type' => 'text',
+            'label' => '面積（公頃）',
+            'div' => 'form-group col-md-6',
+            'class' => 'form-control',
+        ));
+        echo $this->Form->input('class', array(
+            'type' => 'text',
+            'label' => '類型',
+            'div' => 'form-group col-md-6',
+            'class' => 'form-control',
+        ));
+        echo $this->Form->input('admin', array(
+            'type' => 'text',
+            'label' => '管理單位',
+            'div' => 'form-group col-md-6',
+            'class' => 'form-control',
+        ));
+        echo $this->Form->input('land_zone', array(
+            'type' => 'text',
+            'label' => '土地類型',
+            'div' => 'form-group',
+            'class' => 'form-control',
+        ));
+        echo $this->Form->input('note', array(
+            'type' => 'textarea',
+            'rows' => 5,
+            'label' => '備註',
+            'div' => 'form-group',
+            'class' => 'form-control',
+        ));
+        echo $this->Form->submit('送出', array('class' => 'btn btn-primary')) . '<hr />';
         ?>
-    </fieldset>
-    <?php echo $this->Form->end(__('Submit')); ?>
+    </div>
+    <?php echo $this->Form->end(); ?>
 </div>
+<?php
+$this->Html->script('view/parks/add', array('inline' => false));
