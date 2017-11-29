@@ -1,6 +1,6 @@
 <div>
     <h3>建立公園</h3>
-    <?php echo $this->Form->create('Park'); ?>
+    <?php echo $this->Form->create('Park', array('url' => '/admin/parks/add')); ?>
     <div class="Parks form">
         <div class="col-md-12" id="parkMap" style="height: 300px;"></div>
         <?php

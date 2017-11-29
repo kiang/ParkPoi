@@ -1,6 +1,6 @@
 <div id="IssuesAdminAdd">
     <h3>建立通報</h3>
-    <?php echo $this->Form->create('Issue', array('type' => 'file')); ?>
+    <?php echo $this->Form->create('Issue', array('type' => 'file', 'url' => '/admin/issues/add')); ?>
     <div class="Issues form">
         <?php
         if(!empty($park)) {

@@ -140,6 +140,7 @@ class ParksController extends AppController {
             $options = array('conditions' => array('Park.' . $this->Park->primaryKey => $id));
             $this->request->data = $this->Park->find('first', $options);
         }
+        $this->set('id', $id);
     }
 
     /**
