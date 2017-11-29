@@ -155,7 +155,6 @@ class ParksController extends AppController {
         if (!$this->Park->exists()) {
             throw new NotFoundException(__('Invalid park'));
         }
-        $this->request->allowMethod('post', 'delete');
         if ($this->Park->delete()) {
             $this->Flash->success(__('The park has been deleted.'));
         } else {
