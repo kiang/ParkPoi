@@ -12,7 +12,7 @@ class IssuesController extends AppController {
     public function beforeFilter() {
         parent::beforeFilter();
         if (isset($this->Auth)) {
-            $this->Auth->allow(array('view'));
+            $this->Auth->allow(array('admin_view'));
         }
     }
 

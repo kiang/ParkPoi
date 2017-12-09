@@ -22,7 +22,7 @@ class ParksController extends AppController {
     public function beforeFilter() {
         parent::beforeFilter();
         if (isset($this->Auth)) {
-            $this->Auth->allow(array('map', 'points', 'view'));
+            $this->Auth->allow(array('map', 'points', 'admin_view'));
         }
     }
     
