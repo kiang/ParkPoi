@@ -2,12 +2,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zh-TW">
     <head>
         <?php echo $this->Html->charset(); ?>
-        <title>
-            台南也要特色公園::
-            <?php echo $title_for_layout; ?>
-        </title>
+        <title><?php
+            if (!empty($title_for_layout)) {
+                echo $title_for_layout . ' @ ';
+            }
+            ?>台南也要特色公園</title>
         <link rel="stylesheet" href="https://openlayers.org/en/v4.2.0/css/ol.css" type="text/css"></link>
         <?php
+        echo $this->Html->meta('description', '身在文化古都，也希望臺南的孩子可以在豐富、多樣且兼容的戶外活動空間盡情揮灑，政府動作不夠快，府城的家長自己動起來，讓我們熱愛的臺南「府城有特色」！');
+        echo '<meta property="og:image" content="' . $this->Html->url('/img/logo.png', true) . '">';
         echo $this->Html->meta('icon');
         echo $this->Html->css('jquery-ui');
         echo $this->Html->css('bootstrap');

@@ -85,11 +85,13 @@ class ParksController extends AppController {
      * @return void
      */
     public function admin_view($id = null) {
-        if (!$this->Park->exists($id)) {
+        $park = $this->Park->find('first', array(
+            'Park.id' => $id,
+        ));
+        if (empty($park)) {
             throw new NotFoundException(__('Invalid park'));
         }
-        $options = array('conditions' => array('Park.' . $this->Park->primaryKey => $id));
-        $this->set('park', $this->Park->find('first', $options));
+        $this->set('park', $park);
         $this->paginate['Issue'] = array(
             'limit' => 24,
             'order' => array('Issue.modified' => 'DESC'),
@@ -98,7 +100,14 @@ class ParksController extends AppController {
             'Issue.is_active' => 1,
             'Issue.park_id' => $id,
         );
-        $this->set('items', $this->paginate($this->Park->Issue, $scope));
+        $items = $this->paginate($this->Park->Issue, $scope);
+        $this->set('title_for_layout', $park['Park']['name']);
+        $this->set('desc_for_layout', "{$park['Park']['area']}{$park['Park']['cunli']}{$park['Park']['location']}");
+        if(!empty($items[0]['Issue']['pic'])) {
+            $p = pathinfo($items[0]['Issue']['pic']);
+            $this->set('ogImage', 'img/pic/' . $p['filename'] . '_s.jpg');
+        }
+        $this->set('items', $items);
     }
 
     /**

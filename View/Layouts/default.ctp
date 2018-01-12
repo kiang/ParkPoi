@@ -2,12 +2,27 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zh-TW">
     <head>
         <?php echo $this->Html->charset(); ?>
-        <title>
-            台南也要特色公園::
-            <?php echo $title_for_layout; ?>
-        </title>
+        <title><?php
+            if (!empty($title_for_layout)) {
+                echo $title_for_layout . ' @ ';
+            }
+            ?>台南也要特色公園</title>
         <link rel="stylesheet" href="https://openlayers.org/en/v4.2.0/css/ol.css" type="text/css"></link>
         <?php
+        $trailDesc = '身在文化古都，也希望臺南的孩子可以在豐富、多樣且兼容的戶外活動空間盡情揮灑，政府動作不夠快，府城的家長自己動起來，讓我們熱愛的臺南「府城有特色」！';
+        if (!isset($desc_for_layout)) {
+            $desc_for_layout = $trailDesc;
+        } else {
+            $desc_for_layout .= ' | ' . $trailDesc;
+        }
+        echo $this->Html->meta('description', $desc_for_layout);
+        if (!isset($ogImage)) {
+            $ogImage = $this->Html->url('/img/logo.png', true);
+        } else {
+            $ogImage = $this->Html->url('/' . $ogImage, true);
+        }
+        echo '<meta property="og:image" content="' . $ogImage . '">';
+
         echo $this->Html->meta('icon');
         echo $this->Html->css('jquery-ui');
         echo $this->Html->css('bootstrap');
@@ -64,8 +79,8 @@
                 及<?php echo $this->Html->link('台南也要特色公園', 'https://www.facebook.com/142317883060795/', array('target' => '_blank')); ?>共同開發之平台，
                 本網站資料僅供交流參考，本網站恕不負資訊正確之一切法律責任。
                 <div class="pull-right">
-                  本站內容採 <a href="https://creativecommons.org/licenses/by/4.0/deed.zh_TW" target="_blank">CC BY 4.0</a> 授權，歡迎分享利用
-                  <a href="https://github.com/kiang/ParkPoi" target="_blank">網站原始碼</a>
+                    本站內容採 <a href="https://creativecommons.org/licenses/by/4.0/deed.zh_TW" target="_blank">CC BY 4.0</a> 授權，歡迎分享利用
+                    <a href="https://github.com/kiang/ParkPoi" target="_blank">網站原始碼</a>
                 </div>
             </div>
         </div>
