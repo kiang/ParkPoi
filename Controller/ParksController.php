@@ -86,7 +86,9 @@ class ParksController extends AppController {
      */
     public function admin_view($id = null) {
         $park = $this->Park->find('first', array(
-            'Park.id' => $id,
+            'conditions' => array(
+                'Park.id' => $id,
+            ),
         ));
         if (empty($park)) {
             throw new NotFoundException(__('Invalid park'));
