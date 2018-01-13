@@ -1,16 +1,23 @@
 <div class="parks view">
     <h2><?php echo h($park['Park']['name']); ?></h2>
-    <?php echo $this->Html->link('建立通報', '/admin/issues/add/' . $park['Park']['id'], array('class' => 'btn btn-primary pull-right')); ?>
+    <div class="btn-group pull-right">
+        <?php
+        echo $this->Html->link('建立通報', '/admin/issues/add/' . $park['Park']['id'], array('class' => 'btn btn-primary'));
+        if (!empty($park['Park']['longitude'])) {
+            echo '<a target="_blank" href="https://www.google.com.tw/maps?q=' . $park['Park']['latitude'] . ',' . $park['Park']['longitude'] . '" class="btn btn-default">在 Google 地圖開啟</a>';
+        }
+        ?>
+    </div>
     <div id="IssuesAdminIndex">
         <h2>通報資料</h2>
         <div class="paging"><?php echo $this->element('paginator'); ?></div>
         <?php
         foreach ($items as $item) {
             ?><div class="col-md-4">
-                <?php echo $this->Html->link("{$item['Issue']['title']} - {$item['Issue']['modified']}", '/admin/issues/view/' . $item['Issue']['id']); ?>
-                <?php
-                echo $this->Olc->imgLink('pic', $item['Issue']['pic']);
-                ?>    
+            <?php echo $this->Html->link("{$item['Issue']['title']} - {$item['Issue']['modified']}", '/admin/issues/view/' . $item['Issue']['id']); ?>
+            <?php
+            echo $this->Olc->imgLink('pic', $item['Issue']['pic']);
+            ?>    
             </div>
             <?php
         }
@@ -62,7 +69,14 @@
         </tr>
     </table>
 </div>
-<?php echo $this->Html->link('建立通報', '/admin/issues/add/' . $park['Park']['id'], array('class' => 'btn btn-primary')); ?>
+<div class="btn-group">
+    <?php
+    echo $this->Html->link('建立通報', '/admin/issues/add/' . $park['Park']['id'], array('class' => 'btn btn-primary'));
+    if (!empty($park['Park']['longitude'])) {
+        echo '<a target="_blank" href="https://www.google.com.tw/maps?q=' . $park['Park']['latitude'] . ',' . $park['Park']['longitude'] . '" class="btn btn-default">在 Google 地圖開啟</a>';
+    }
+    ?>
+</div>
 <?php
 echo $this->Html->scriptBlock("var basePoint = [{$park['Park']['longitude']}, {$park['Park']['latitude']}];", array('inline' => false));
 $this->Html->script('view/parks/view', array('inline' => false));

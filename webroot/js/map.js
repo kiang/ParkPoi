@@ -150,10 +150,12 @@ function mapClicked(evt) {
             if (false === pointFound) {
                 var p = feature.getProperties();
                 if (p.parkId) {
+                    var fPoint = ol.proj.toLonLat(feature.getGeometry().getCoordinates());
                     pointFound = true;
                     message += '<h4>' + p.name + '</h4><div class="btn-group">';
-                    message += '<a href="' + baseUrl + '/admin/issues/add/' + p.parkId + '" class="btn btn-default">建立通報</a>';
+                    message += '<a href="' + baseUrl + '/admin/issues/add/' + p.parkId + '" class="btn btn-primary">建立通報</a>';
                     message += '<a href="' + baseUrl + '/admin/parks/view/' + +p.parkId + '" class="btn btn-default">檢視公園</a>';
+                    message += '<a target="_blank" href="https://www.google.com.tw/maps?q=' + fPoint[1] + ',' + fPoint[0] + '" class="btn btn-default">在 Google 地圖開啟</a>';
                     message += '</div>';
                     coordinate = p.geometry.getCoordinates();
                 } else {
@@ -183,7 +185,7 @@ map.on('click', function (e) {
 map.on('touchstart', function (e) {
     mapClicked(e);
 })
-$.getJSON(baseUrl + '/parks/points', function (p) {
+$.getJSON(baseUrl + 'parks/points', function (p) {
     var features = [];
     for (k in p) {
         var f = new ol.Feature({
