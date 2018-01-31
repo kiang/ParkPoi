@@ -17,12 +17,13 @@ class IssuesController extends AppController {
     }
 
     function index() {
+        $scope = array('Issue.is_active' => 1);
         $this->paginate['Issue'] = array(
             'limit' => 50,
             'order' => array('Issue.modified' => 'DESC'),
             'contain' => array('Park'),
         );
-        $this->set('items', $this->paginate($this->Issue));
+        $this->set('items', $this->paginate($this->Issue, $scope));
     }
 
     function view($id = null) {
