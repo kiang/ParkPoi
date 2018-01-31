@@ -188,17 +188,26 @@ map.on('touchstart', function (e) {
 $.getJSON(baseUrl + 'parks/points', function (p) {
     var features = [];
     for (k in p) {
-        var f = new ol.Feature({
-            geometry: new ol.geom.Point(ol.proj.fromLonLat([parseFloat(p[k].Park.longitude), parseFloat(p[k].Park.latitude)])),
-            parkId: p[k].Park.id,
-            name: p[k].Park.name
-        });
-        if(p[k].Issue.length > 0) {
-            f.setStyle(layerGreen);
-        } else {
-            f.setStyle(layerYellow);
+        var g = ol.proj.fromLonLat([parseFloat(p[k].Park.longitude), parseFloat(p[k].Park.latitude)]);
+        var nanCheck = true;
+        for (j in g) {
+            if (isNaN(g[j])) {
+                nanCheck = false;
+            }
         }
-        features.push(f);
+        if (nanCheck) {
+            var f = new ol.Feature({
+                geometry: new ol.geom.Point(g),
+                parkId: p[k].Park.id,
+                name: p[k].Park.name
+            });
+            if (p[k].Issue.length > 0) {
+                f.setStyle(layerGreen);
+            } else {
+                f.setStyle(layerYellow);
+            }
+            features.push(f);
+        }
     }
     var vectorLayer = new ol.layer.Vector({
         source: new ol.source.Vector({
