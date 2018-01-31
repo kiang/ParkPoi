@@ -11,17 +11,13 @@
     <div id="IssuesAdminIndex">
         <h2>通報資料</h2>
         <div class="paging"><?php echo $this->element('paginator'); ?></div>
+        <section id="photos">
         <?php
         foreach ($items as $item) {
-            ?><div class="col-md-4">
-            <?php echo $this->Html->link("{$item['Issue']['title']} - {$item['Issue']['modified']}", '/admin/issues/view/' . $item['Issue']['id']); ?>
-            <?php
-            echo $this->Olc->imgLink('pic', $item['Issue']['pic']);
-            ?>    
-            </div>
-            <?php
+            echo $this->Html->link($this->Olc->imgLink('pic', $item['Issue']['pic']), '/admin/issues/view/' . $item['Issue']['id'], array('escape' => false));
         }
         ?>
+        </section>
         <div class="clearfix"></div>
         <div class="paging"><?php echo $this->element('paginator'); ?></div>
     </div>
