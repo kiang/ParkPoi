@@ -12,13 +12,15 @@ class IssuesController extends AppController {
     public function beforeFilter() {
         parent::beforeFilter();
         if (isset($this->Auth)) {
-            $this->Auth->allow(array('admin_view'));
+            $this->Auth->allow(array('admin_view', 'index'));
         }
     }
 
     function index() {
         $this->paginate['Issue'] = array(
-            'limit' => 20,
+            'limit' => 50,
+            'order' => array('Issue.modified' => 'DESC'),
+            'contain' => array('Park'),
         );
         $this->set('items', $this->paginate($this->Issue));
     }
@@ -111,10 +113,10 @@ class IssuesController extends AppController {
             } else {
                 $this->Session->setFlash(__('Something was wrong during saving, please try again', true));
             }
-        } elseif($parkId !== 0) {
+        } elseif ($parkId !== 0) {
             $parkId = intval($parkId);
             $this->set('park', $this->Issue->Park->find('first', array(
-                'conditions' => array('Park.id' => $parkId),
+                        'conditions' => array('Park.id' => $parkId),
             )));
         }
     }
