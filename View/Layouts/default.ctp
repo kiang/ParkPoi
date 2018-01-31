@@ -56,6 +56,8 @@
                                 break;
                         }
                     }
+                    echo $this->Html->link('地圖', '/', array('class' => 'btn btn-default'));
+                    echo $this->Html->link('照片牆', '/issues/index', array('class' => 'btn btn-default'));
                     if (!empty($loginMember['group_id'])) {
                         echo $this->Html->link('編輯帳號', '/members/edit', array('class' => 'btn btn-default'));
                         echo $this->Html->link('登出', '/members/logout', array('class' => 'btn btn-default'));

@@ -44,6 +44,8 @@
                                 break;
                         }
                     }
+                    echo $this->Html->link('地圖', '/', array('class' => 'btn btn-default'));
+                    echo $this->Html->link('照片牆', '/issues/index', array('class' => 'btn btn-default'));
                     if (!empty($loginMember['group_id'])) {
                         echo $this->Html->link('編輯帳號', '/members/edit', array('class' => 'btn btn-default'));
                         echo $this->Html->link('登出', '/members/logout', array('class' => 'btn btn-default'));
@@ -69,8 +71,8 @@
                 及<?php echo $this->Html->link('台南也要特色公園', 'https://www.facebook.com/142317883060795/', array('target' => '_blank')); ?>共同開發之平台，
                 本網站資料僅供交流參考，本網站恕不負資訊正確之一切法律責任。
                 <div class="pull-right">
-                  本站內容採 <a href="https://creativecommons.org/licenses/by/4.0/deed.zh_TW" target="_blank">CC BY 4.0</a> 授權，歡迎分享利用
-                  <a href="https://github.com/kiang/ParkPoi" target="_blank">網站原始碼</a>
+                    本站內容採 <a href="https://creativecommons.org/licenses/by/4.0/deed.zh_TW" target="_blank">CC BY 4.0</a> 授權，歡迎分享利用
+                    <a href="https://github.com/kiang/ParkPoi" target="_blank">網站原始碼</a>
                 </div>
             </div>
         </div>
