@@ -21,7 +21,11 @@ class IssuesController extends AppController {
         $this->paginate['Issue'] = array(
             'limit' => 50,
             'order' => array('Issue.modified' => 'DESC'),
-            'contain' => array('Park'),
+            'contain' => array(
+              'Park' => array(
+                'fields' => array('name'),
+              )
+            ),
         );
         $this->set('items', $this->paginate($this->Issue, $scope));
     }
