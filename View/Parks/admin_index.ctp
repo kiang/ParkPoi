@@ -1,9 +1,9 @@
 <div class="parks index">
     <h2>公園</h2>
-    <div class="pull-right col-md-6">
+    <div class="pull-right col">
         <form id="ParkKeywordsForm">
-        <div class="col-md-6"><input type="text" class="form-control" id="ParkKeywords" value="<?php echo $keywords; ?>" /></div>
-        <a href="#" class="btn btn-primary" id="ParkKeywordsBtn">搜尋</a>
+        <div class="col"><input type="text" class="form-control" id="ParkKeywords" value="<?php echo $keywords; ?>" /></div>
+        <a href="#" class="btn btn-primary btn-lg btn-block" id="ParkKeywordsBtn">搜尋</a>
         </form>
     </div>
     <div class="paging"><?php echo $this->element('paginator'); ?></div>

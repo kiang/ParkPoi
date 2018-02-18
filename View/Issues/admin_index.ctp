@@ -5,10 +5,10 @@ if (!isset($url)) {
 ?>
 <div id="IssuesAdminIndex">
     <h2>通報資料</h2>
-    <div class="pull-right col-md-6">
+    <div class="pull-right col">
         <form id="IssueKeywordsForm">
-        <div class="col-md-6"><input type="text" class="form-control" id="IssueKeywords" value="<?php echo $keywords; ?>" /></div>
-        <a href="#" class="btn btn-primary" id="IssueKeywordsBtn">搜尋</a>
+        <div class="col"><input type="text" class="form-control" id="IssueKeywords" value="<?php echo $keywords; ?>" /></div>
+        <a href="#" class="btn btn-primary btn-lg btn-block" id="IssueKeywordsBtn">搜尋</a>
         </form>
     </div>
     <div class="paging"><?php echo $this->element('paginator'); ?></div>
@@ -17,7 +17,7 @@ if (!isset($url)) {
         if(empty($item['Issue']['title'])) {
             $item['Issue']['title'] = $item['Issue']['modified'];
         }
-        ?><div class="col-md-4">
+        ?><div class="col">
             <strong>公園：</strong><?php echo $this->Html->link($item['Park']['name'], array('controller' => 'parks', 'action' => 'view', $item['Issue']['park_id'])); ?>
             <br /><strong>標題：</strong><?php echo $this->Html->link($item['Issue']['title'], array('action' => 'view', $item['Issue']['id'])); ?>
             <br /><strong>時間：</strong><?php echo $item['Issue']['modified']; ?>

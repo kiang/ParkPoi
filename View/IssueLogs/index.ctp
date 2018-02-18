@@ -51,7 +51,7 @@
                         ?></td>
                     <td>
                         <div class="btn-group">
-                            <?php echo $this->Html->link(__('View', true), array('action' => 'view', $item['IssueLog']['id']), array('class' => 'btn btn-default IssueLogsIndexControl')); ?>
+                            <?php echo $this->Html->link(__('View', true), array('action' => 'view', $item['IssueLog']['id']), array('class' => 'btn btn-secondary IssueLogsIndexControl')); ?>
                         </div>
                     </td>
                 </tr>

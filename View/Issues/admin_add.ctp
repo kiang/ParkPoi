@@ -59,7 +59,7 @@
      * @var Form FormHelper
      */
     echo $this->Form->submit('送出', array(
-        'class' => 'btn btn-primary',
+        'class' => 'btn btn-primary btn-lg btn-block',
     ));
     echo $this->Form->end();
     ?>

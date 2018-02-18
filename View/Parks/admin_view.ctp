@@ -2,9 +2,9 @@
     <h2><?php echo h($park['Park']['name']); ?></h2>
     <div class="btn-group pull-right">
         <?php
-        echo $this->Html->link('建立通報', '/admin/issues/add/' . $park['Park']['id'], array('class' => 'btn btn-primary'));
+        echo $this->Html->link('建立通報', '/admin/issues/add/' . $park['Park']['id'], array('class' => 'btn btn-primary btn-lg btn-block'));
         if (!empty($park['Park']['longitude'])) {
-            echo '<a target="_blank" href="https://www.google.com.tw/maps?q=' . $park['Park']['latitude'] . ',' . $park['Park']['longitude'] . '" class="btn btn-default">在 Google 地圖開啟</a>';
+            echo '<a target="_blank" href="https://www.google.com.tw/maps?q=' . $park['Park']['latitude'] . ',' . $park['Park']['longitude'] . '" class="btn btn-secondary">在 Google 地圖開啟</a>';
         }
         ?>
     </div>
@@ -24,7 +24,7 @@
         <div class="clearfix"></div>
         <div class="paging"><?php echo $this->element('paginator'); ?></div>
     </div>
-    <div class="col-md-12" id="parkMap" style="height: 300px;"></div>
+    <div class="col" id="parkMap" style="height: 300px;"></div>
     <table class="table table-bordered">
         <tr>
             <th>官方編號</th>
@@ -70,9 +70,9 @@
 </div>
 <div class="btn-group">
     <?php
-    echo $this->Html->link('建立通報', '/admin/issues/add/' . $park['Park']['id'], array('class' => 'btn btn-primary'));
+    echo $this->Html->link('建立通報', '/admin/issues/add/' . $park['Park']['id'], array('class' => 'btn btn-primary btn-lg btn-block'));
     if (!empty($park['Park']['longitude'])) {
-        echo '<a target="_blank" href="https://www.google.com.tw/maps?q=' . $park['Park']['latitude'] . ',' . $park['Park']['longitude'] . '" class="btn btn-default">在 Google 地圖開啟</a>';
+        echo '<a target="_blank" href="https://www.google.com.tw/maps?q=' . $park['Park']['latitude'] . ',' . $park['Park']['longitude'] . '" class="btn btn-secondary">在 Google 地圖開啟</a>';
     }
     ?>
 </div>

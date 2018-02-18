@@ -7,39 +7,39 @@
         ?></div><?php
     }
     ?><hr />
-    <div class="col-md-12">
-        <div class="col-md-3"><strong>標題</strong></div>
-        <div class="col-md-9">&nbsp;<?php
+    <div class="col">
+        <div class="col"><strong>標題</strong></div>
+        <div class="col">&nbsp;<?php
             if ($this->data['Issue']['title']) {
                 echo $this->data['Issue']['title'];
             }
             ?>&nbsp;
         </div>
-        <div class="col-md-3"><strong>照片(上傳資料)</strong></div>
-        <div class="col-md-9">&nbsp;<?php
+        <div class="col"><strong>照片(上傳資料)</strong></div>
+        <div class="col">&nbsp;<?php
             echo $this->Olc->imgLink('pic', $this->data['Issue']['pic']);
             ?>&nbsp;
         </div>
-        <div class="col-md-3"><strong>公園</strong></div>
-        <div class="col-md-9">&nbsp;<?php
+        <div class="col"><strong>公園</strong></div>
+        <div class="col">&nbsp;<?php
             echo $this->Html->link($this->data['Park']['name'], '/admin/parks/view/' . $this->data['Issue']['park_id']);
             ?>&nbsp;
         </div>
-        <div class="col-md-3"><strong>狀態</strong></div>
-        <div class="col-md-9">&nbsp;<?php
+        <div class="col"><strong>狀態</strong></div>
+        <div class="col">&nbsp;<?php
             if ($this->data['Issue']['status']) {
                 echo $this->data['Issue']['status'];
             }
             ?>&nbsp;
         </div>
-        <div class="col-md-3"><strong>更新時間</strong></div>
-        <div class="col-md-9">&nbsp;<?php
+        <div class="col"><strong>更新時間</strong></div>
+        <div class="col">&nbsp;<?php
             echo $this->data['Issue']['modified'];
             ?>&nbsp;
         </div>
 <?php if(Configure::read('loginMember.group_id') == 1) { ?>
-        <div class="col-md-3"><strong>更新者</strong></div>
-        <div class="col-md-9">&nbsp;<?php
+        <div class="col"><strong>更新者</strong></div>
+        <div class="col">&nbsp;<?php
             echo $this->data['Member']['username'];
             ?>&nbsp;
         </div>
@@ -72,7 +72,7 @@
         </div>
         <?php
         echo $this->Form->submit('送出', array(
-            'class' => 'btn btn-primary',
+            'class' => 'btn btn-primary btn-lg btn-block',
         ));
         echo $this->Form->end();
         ?>

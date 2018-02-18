@@ -39,12 +39,12 @@
                 </td>
                 <td>
                     <div class="btn-group">
-                        <?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $group['Group']['id']), array('class' => 'btn btn-default dialogControl')); ?>
-                        <?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $group['Group']['id']), array('class' => 'btn btn-default'), __('Delete the item, sure?', true)); ?>
-                        <?php echo $this->Html->link(__('Sub group', true), array('action' => 'index', $group['Group']['id']), array('class' => 'btn btn-default')); ?>
+                        <?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $group['Group']['id']), array('class' => 'btn btn-secondary dialogControl')); ?>
+                        <?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $group['Group']['id']), array('class' => 'btn btn-secondary'), __('Delete the item, sure?', true)); ?>
+                        <?php echo $this->Html->link(__('Sub group', true), array('action' => 'index', $group['Group']['id']), array('class' => 'btn btn-secondary')); ?>
                         <?php
                         if ($group['Group']['id'] != 1) {
-                            echo $this->Html->link(__('Permission', true), array('controller' => 'group_permissions', 'action' => 'group', $group['Group']['id']), array('class' => 'btn btn-default'));
+                            echo $this->Html->link(__('Permission', true), array('controller' => 'group_permissions', 'action' => 'group', $group['Group']['id']), array('class' => 'btn btn-secondary'));
                         }
                         ?>
                     </div>

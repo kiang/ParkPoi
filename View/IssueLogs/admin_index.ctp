@@ -6,7 +6,7 @@ if (!isset($url)) {
 <div id="IssueLogsAdminIndex">
     <h2><?php echo __('異動記錄', true); ?></h2>
     <div class="btn-group">
-        <?php echo $this->Html->link(__('Add', true), array('action' => 'add'), array('class' => 'btn btn-default dialogControl')); ?>
+        <?php echo $this->Html->link(__('Add', true), array('action' => 'add'), array('class' => 'btn btn-secondary dialogControl')); ?>
     </div>
     <div><?php
         echo $this->Paginator->counter(array(
@@ -54,9 +54,9 @@ if (!isset($url)) {
                         ?></td>
                     <td>
                         <div class="btn-group">
-                            <?php echo $this->Html->link(__('View', true), array('action' => 'view', $item['IssueLog']['id']), array('class' => 'btn btn-default dialogControl')); ?>
-                            <?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $item['IssueLog']['id']), array('class' => 'btn btn-default dialogControl')); ?>
-                            <?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $item['IssueLog']['id']), array('class' => 'btn btn-default'), __('Delete the item, sure?', true)); ?>
+                            <?php echo $this->Html->link(__('View', true), array('action' => 'view', $item['IssueLog']['id']), array('class' => 'btn btn-secondary dialogControl')); ?>
+                            <?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $item['IssueLog']['id']), array('class' => 'btn btn-secondary dialogControl')); ?>
+                            <?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $item['IssueLog']['id']), array('class' => 'btn btn-secondary'), __('Delete the item, sure?', true)); ?>
                         </div>
                     </td>
                 </tr>

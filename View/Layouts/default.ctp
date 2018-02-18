@@ -7,7 +7,6 @@
                 echo $title_for_layout . ' @ ';
             }
             ?>台南也要特色公園</title>
-        <link rel="stylesheet" href="https://openlayers.org/en/v4.2.0/css/ol.css" type="text/css"></link>
         <?php
         $trailDesc = '身在文化古都，也希望臺南的孩子可以在豐富、多樣且兼容的戶外活動空間盡情揮灑，政府動作不夠快，府城的家長自己動起來，讓我們熱愛的臺南「府城有特色」！';
         if (!isset($desc_for_layout)) {
@@ -15,17 +14,20 @@
         } else {
             $desc_for_layout .= ' | ' . $trailDesc;
         }
+        echo $this->Html->meta('icon');
         echo $this->Html->meta('description', $desc_for_layout);
         if (!isset($ogImage)) {
             $ogImage = $this->Html->url('/img/logo.png', true);
         } else {
             $ogImage = $this->Html->url('/' . $ogImage, true);
         }
-        echo '<meta property="og:image" content="' . $ogImage . '">';
-
-        echo $this->Html->meta('icon');
+        ?>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta property="og:image" content="<?php echo $ogImage; ?>" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://openlayers.org/en/v4.2.0/css/ol.css" type="text/css"></link>
+        <?php
         echo $this->Html->css('jquery-ui');
-        echo $this->Html->css('bootstrap');
         echo $this->Html->css('default');
         ?>
     </head>
@@ -35,43 +37,30 @@
                 <h1><?php echo $this->Html->link('台南也要特色公園', '/'); ?></h1>
             </div>
             <div id="content">
-                <div class="btn-group">
-                    <?php
-                    $loginMember = Configure::read('loginMember');
-                    if (isset($loginMember['group_id'])) {
-                        switch ($loginMember['group_id']) {
-                            case 1:
-                                echo $this->Html->link('通報資料', '/admin/issues', array('class' => 'btn btn-default'));
-                                echo $this->Html->link('建立通報', '/admin/issues/add', array('class' => 'btn btn-default'));
-                                echo $this->Html->link('公園', '/admin/parks', array('class' => 'btn btn-default'));
-                                echo $this->Html->link('建立公園', '/admin/parks/add', array('class' => 'btn btn-default'));
-                                echo $this->Html->link('帳號', '/admin/members', array('class' => 'btn btn-default'));
-                                echo $this->Html->link('群組', '/admin/groups', array('class' => 'btn btn-default'));
-                                break;
-                            case 2:
-                                echo $this->Html->link('通報資料', '/admin/issues', array('class' => 'btn btn-default'));
-                                echo $this->Html->link('建立通報', '/admin/issues/add', array('class' => 'btn btn-default'));
-                                echo $this->Html->link('公園', '/admin/parks', array('class' => 'btn btn-default'));
-                                echo $this->Html->link('建立公園', '/admin/parks/add', array('class' => 'btn btn-default'));
-                                break;
-                        }
+                <?php
+                $loginMember = Configure::read('loginMember');
+                if (isset($loginMember['group_id'])) {
+                    switch ($loginMember['group_id']) {
+                        case 1:
+                            echo $this->Html->link('建立通報', '/admin/issues/add', array('class' => 'btn btn-primary btn-lg btn-block'));
+                            echo $this->Html->link('建立公園', '/admin/parks/add', array('class' => 'btn btn-primary btn-lg btn-block'));
+                            break;
+                        case 2:
+                            echo $this->Html->link('建立通報', '/admin/issues/add', array('class' => 'btn btn-primary btn-lg btn-block'));
+                            echo $this->Html->link('建立公園', '/admin/parks/add', array('class' => 'btn btn-primary btn-lg btn-block'));
+                            break;
                     }
-                    echo $this->Html->link('地圖', '/', array('class' => 'btn btn-default'));
-                    echo $this->Html->link('照片牆', '/issues/index', array('class' => 'btn btn-default'));
-                    if (!empty($loginMember['group_id'])) {
-                        echo $this->Html->link('編輯帳號', '/members/edit', array('class' => 'btn btn-default'));
-                        echo $this->Html->link('登出', '/members/logout', array('class' => 'btn btn-default'));
-                    } else {
-                        echo $this->Html->link('登入', '/members/login', array('class' => 'btn btn-default'));
+                }
+                echo $this->Html->link('照片牆', '/issues/index', array('class' => 'btn btn-secondary btn-lg btn-block'));
+                if (empty($loginMember['group_id'])) {
+                    echo $this->Html->link('登入', '/members/login', array('class' => 'btn btn-primary btn-lg btn-block'));
+                }
+                if (!empty($actions_for_layout)) {
+                    foreach ($actions_for_layout as $title => $url) {
+                        echo $this->Html->link($title, $url, array('class' => 'btn'));
                     }
-                    if (!empty($actions_for_layout)) {
-                        foreach ($actions_for_layout as $title => $url) {
-                            echo $this->Html->link($title, $url, array('class' => 'btn'));
-                        }
-                    }
-                    ?>
-                </div>
-
+                }
+                ?>
                 <?php echo $this->Session->flash(); ?>
                 <div id="viewContent"><?php echo $content_for_layout; ?></div>
             </div>
@@ -85,6 +74,34 @@
                     <a href="https://github.com/kiang/ParkPoi" target="_blank">網站原始碼</a>
                 </div>
             </div>
+            <?php
+            if (isset($loginMember['group_id'])) {
+                switch ($loginMember['group_id']) {
+                    case 1:
+                        echo $this->Html->link('通報資料', '/admin/issues', array('class' => 'btn btn-secondary btn-lg btn-block'));
+                        echo $this->Html->link('公園', '/admin/parks', array('class' => 'btn btn-secondary btn-lg btn-block'));
+                        echo $this->Html->link('帳號', '/admin/members', array('class' => 'btn btn-secondary btn-lg btn-block'));
+                        echo $this->Html->link('群組', '/admin/groups', array('class' => 'btn btn-secondary btn-lg btn-block'));
+                        break;
+                    case 2:
+                        echo $this->Html->link('通報資料', '/admin/issues', array('class' => 'btn btn-secondary btn-lg btn-block'));
+                        echo $this->Html->link('公園', '/admin/parks', array('class' => 'btn btn-secondary btn-lg btn-block'));
+                        break;
+                }
+            }
+            echo $this->Html->link('照片牆', '/issues/index', array('class' => 'btn btn-secondary btn-lg btn-block'));
+            if (!empty($loginMember['group_id'])) {
+                echo $this->Html->link('編輯帳號', '/members/edit', array('class' => 'btn btn-secondary btn-lg btn-block'));
+                echo $this->Html->link('登出', '/members/logout', array('class' => 'btn btn-secondary btn-lg btn-block'));
+            } else {
+                echo $this->Html->link('登入', '/members/login', array('class' => 'btn btn-primary btn-lg btn-block'));
+            }
+            if (!empty($actions_for_layout)) {
+                foreach ($actions_for_layout as $title => $url) {
+                    echo $this->Html->link($title, $url, array('class' => 'btn'));
+                }
+            }
+            ?>
         </div>
         <?php
         if ($loginMember['group_id'] == 1) {
@@ -96,10 +113,11 @@
         </script>
         <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"></script>
         <script src="https://openlayers.org/en/v4.2.0/build/ol.js"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <?php
-        echo $this->Html->script('jquery');
         echo $this->Html->script('jquery-ui');
-        echo $this->Html->script('bootstrap.min');
         echo $this->Html->script('olc');
         echo $scripts_for_layout;
         ?>
