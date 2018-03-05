@@ -39,7 +39,10 @@ class IssuesController extends AppController {
 
     function admin_index($name = null) {
         $keywords = array();
-        $scope = array('Issue.is_active' => 1);
+        $scope = array(
+            'Issue.is_active' => 1,
+            'Issue.park_id >' => 0,
+        );
         if (!empty($name)) {
             $name = Sanitize::clean($name);
             $keywords = explode(' ', $name);
