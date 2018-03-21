@@ -1,24 +1,5 @@
 window.app = {};
 var app = window.app;
-app.Button = function (opt_options) {
-    var options = opt_options || {};
-    var button = document.createElement('button');
-    button.innerHTML = options.bText;
-    var this_ = this;
-    var handleButtonClick = function () {
-        window.open(options.bHref);
-    };
-    button.addEventListener('click', handleButtonClick, false);
-    button.addEventListener('touchstart', handleButtonClick, false);
-    var element = document.createElement('div');
-    element.className = options.bClassName + ' ol-unselectable ol-control';
-    element.appendChild(button);
-    ol.control.Control.call(this, {
-        element: element,
-        target: options.target
-    });
-}
-ol.inherits(app.Button, ol.control.Control);
 var layerYellow = new ol.style.Style({
     image: new ol.style.RegularShape({
         fill: new ol.style.Fill({
@@ -31,6 +12,12 @@ var layerYellow = new ol.style.Style({
         points: 5,
         radius: 18,
         radius2: 10
+    }),
+    text: new ol.style.Text({
+        font: '14px "Open Sans", "Arial Unicode MS", "sans-serif"',
+        fill: new ol.style.Fill({
+            color: 'rgba(0,0,255,0.7)'
+        })
     })
 });
 var layerGreen = new ol.style.Style({
@@ -45,6 +32,12 @@ var layerGreen = new ol.style.Style({
         points: 5,
         radius: 18,
         radius2: 10
+    }),
+    text: new ol.style.Text({
+        font: '14px "Open Sans", "Arial Unicode MS", "sans-serif"',
+        fill: new ol.style.Fill({
+            color: 'rgba(0,0,255,0.7)'
+        })
     })
 });
 var projection = ol.proj.get('EPSG:3857');
@@ -196,16 +189,22 @@ $.getJSON(baseUrl + 'parks/points', function (p) {
             }
         }
         if (nanCheck) {
+            if(p[k].Park.size !== '') {
+                p[k].Park.name += ' (' + p[k].Park.size + ')';
+            }
             var f = new ol.Feature({
                 geometry: new ol.geom.Point(g),
                 parkId: p[k].Park.id,
                 name: p[k].Park.name
             });
+            var fStyle;
             if (p[k].Issue.length > 0) {
-                f.setStyle(layerGreen);
+                fStyle = layerGreen.clone();
             } else {
-                f.setStyle(layerYellow);
+                fStyle = layerYellow.clone();
             }
+            fStyle.getText().setText(f.get('name'));
+            f.setStyle(fStyle);
             features.push(f);
         }
     }

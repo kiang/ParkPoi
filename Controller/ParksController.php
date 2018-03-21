@@ -30,6 +30,7 @@ class ParksController extends AppController {
         $parks = $this->Park->find('all', array(
             'fields' => array(
                 'Park.id', 'Park.name', 'Park.longitude', 'Park.latitude',
+                'Park.size',
             ),
             'conditions' => array(
                 'Park.longitude IS NOT NULL',
