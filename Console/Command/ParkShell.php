@@ -19,7 +19,8 @@ class ParkShell extends AppShell
                     'id'
                 ),
                 'conditions' => [
-                    'sno' => $f['properties']['編號'],
+                    'area' => $f['properties']['區'],
+                    'name' => $f['properties']['公園名稱'],
                 ],
             ]);
             if (!empty($park)) {
