@@ -1,6 +1,6 @@
 {
     "require": {
-	"cakephp/cakephp": "2.9.*",
+	"cakephp/cakephp": "4.0.*",
         "facebook/graph-sdk": "^5.5"
     },
     "config": {
