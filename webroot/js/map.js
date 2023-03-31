@@ -67,7 +67,7 @@ closer.onclick = function () {
 };
 var baseLayer = new ol.layer.Tile({
     source: new ol.source.OSM(),
-    opacity: 0.5
+    opacity: 1
 });
 var appView = new ol.View({
     center: ol.proj.fromLonLat([120.301507, 23.124694]),

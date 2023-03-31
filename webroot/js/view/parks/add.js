@@ -10,21 +10,8 @@ for (var z = 0; z < 20; ++z) {
 }
 
 var baseLayer = new ol.layer.Tile({
-    source: new ol.source.WMTS({
-        matrixSet: 'EPSG:3857',
-        format: 'image/png',
-        url: 'https://wmts.nlsc.gov.tw/wmts',
-        layer: 'EMAP',
-        tileGrid: new ol.tilegrid.WMTS({
-            origin: ol.extent.getTopLeft(projectionExtent),
-            resolutions: resolutions,
-            matrixIds: matrixIds
-        }),
-        style: 'default',
-        wrapX: true,
-        attributions: '<a href="http://maps.nlsc.gov.tw/" target="_blank">國土測繪圖資服務雲</a>'
-    }),
-    opacity: 0.5
+    source: new ol.source.OSM(),
+    opacity: 1
 });
 var pointBegin = ol.proj.fromLonLat([120.301507, 23.124694]);
 var appView = new ol.View({
