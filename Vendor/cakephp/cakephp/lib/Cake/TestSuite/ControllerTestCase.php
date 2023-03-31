@@ -2,18 +2,18 @@
 /**
  * ControllerTestCase file
  *
- * CakePHP(tm) Tests <http://book.cakephp.org/2.0/en/development/testing.html>
- * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * CakePHP(tm) Tests <https://book.cakephp.org/2.0/en/development/testing.html>
+ * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
  *
  * Licensed under The MIT License
  * For full copyright and license information, please see the LICENSE.txt
  * Redistributions of files must retain the above copyright notice
  *
- * @copyright     Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
- * @link          http://book.cakephp.org/2.0/en/development/testing.html CakePHP(tm) Tests
+ * @copyright     Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
+ * @link          https://book.cakephp.org/2.0/en/development/testing.html CakePHP(tm) Tests
  * @package       Cake.TestSuite
  * @since         CakePHP(tm) v 2.0
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
 
 App::uses('Dispatcher', 'Routing');
@@ -265,7 +265,7 @@ abstract class ControllerTestCase extends CakeTestCase {
 				->will($this->returnValue($options['data']));
 		}
 
-		$Dispatch = new ControllerTestDispatcher();
+		$Dispatch = $this->_createDispatcher();
 		foreach (Router::$routes as $route) {
 			if ($route instanceof RedirectRoute) {
 				$route->response = $this->getMock('CakeResponse', array('send'));
@@ -313,6 +313,15 @@ abstract class ControllerTestCase extends CakeTestCase {
 		$_POST = $restore['post'];
 
 		return $this->{$options['return']};
+	}
+
+/**
+ * Creates the test dispatcher class
+ *
+ * @return Dispatcher
+ */
+	protected function _createDispatcher() {
+		return new ControllerTestDispatcher();
 	}
 
 /**
@@ -388,7 +397,15 @@ abstract class ControllerTestCase extends CakeTestCase {
 			if ($methods === true) {
 				$methods = array();
 			}
+			$config = isset($controllerObj->components[$component]) ? $controllerObj->components[$component] : array();
+			if (isset($config['className'])) {
+				$alias = $component;
+				$component = $config['className'];
+			}
 			list($plugin, $name) = pluginSplit($component, true);
+			if (!isset($alias)) {
+				$alias = $name;
+			}
 			$componentClass = $name . 'Component';
 			App::uses($componentClass, $plugin . 'Controller/Component');
 			if (!class_exists($componentClass)) {
@@ -396,11 +413,11 @@ abstract class ControllerTestCase extends CakeTestCase {
 					'class' => $componentClass
 				));
 			}
-			$config = isset($controllerObj->components[$component]) ? $controllerObj->components[$component] : array();
 			/** @var Component|PHPUnit_Framework_MockObject_MockObject $componentObj */
 			$componentObj = $this->getMock($componentClass, $methods, array($controllerObj->Components, $config));
-			$controllerObj->Components->set($name, $componentObj);
-			$controllerObj->Components->enable($name);
+			$controllerObj->Components->set($alias, $componentObj);
+			$controllerObj->Components->enable($alias);
+			unset($alias);
 		}
 
 		$controllerObj->constructClasses();
@@ -410,4 +427,20 @@ abstract class ControllerTestCase extends CakeTestCase {
 		return $this->controller;
 	}
 
+/**
+ * Unsets some properties to free memory.
+ *
+ * @return void
+ */
+	public function tearDown() {
+		parent::tearDown();
+		unset(
+			$this->contents,
+			$this->controller,
+			$this->headers,
+			$this->result,
+			$this->view,
+			$this->vars
+		);
+	}
 }
