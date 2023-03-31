@@ -66,20 +66,7 @@ closer.onclick = function () {
     return false;
 };
 var baseLayer = new ol.layer.Tile({
-    source: new ol.source.WMTS({
-        matrixSet: 'EPSG:3857',
-        format: 'image/png',
-        url: 'https://wmts.nlsc.gov.tw/wmts',
-        layer: 'EMAP',
-        tileGrid: new ol.tilegrid.WMTS({
-            origin: ol.extent.getTopLeft(projectionExtent),
-            resolutions: resolutions,
-            matrixIds: matrixIds
-        }),
-        style: 'default',
-        wrapX: true,
-        attributions: '<a href="http://maps.nlsc.gov.tw/" target="_blank">國土測繪圖資服務雲</a>'
-    }),
+    source: new ol.source.OSM(),
     opacity: 0.5
 });
 var appView = new ol.View({
