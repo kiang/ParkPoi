@@ -46,7 +46,7 @@ var size = ol.extent.getWidth(projectionExtent) / 256;
 var resolutions = new Array(20);
 var matrixIds = new Array(20);
 for (var z = 0; z < 20; ++z) {
-// generate resolutions and matrixIds arrays for this WMTS
+    // generate resolutions and matrixIds arrays for this WMTS
     resolutions[z] = size / Math.pow(2, z);
     matrixIds[z] = z;
 }
@@ -69,8 +69,15 @@ var baseLayer = new ol.layer.Tile({
     source: new ol.source.OSM(),
     opacity: 1
 });
+var geolocationMapped = false;
+var thePos = Cookies.get('userLocation');
+if (!thePos) {
+    thePos = [120.301507, 23.124694];
+} else {
+    geolocationMapped = true;
+}
 var appView = new ol.View({
-    center: ol.proj.fromLonLat([120.301507, 23.124694]),
+    center: ol.proj.fromLonLat(thePos),
     zoom: 11
 });
 var map = new ol.Map({
@@ -99,11 +106,12 @@ positionFeature.setStyle(new ol.style.Style({
         })
     })
 }));
-var geolocationMapped = false;
+
 geolocation.on('change:position', function () {
     var coordinates = geolocation.getPosition();
+    Cookies.set('name', ol.proj.toLonLat(coordinates));
     positionFeature.setGeometry(coordinates ?
-            new ol.geom.Point(coordinates) : null);
+        new ol.geom.Point(coordinates) : null);
     if (false === geolocationMapped) {
         geolocationMapped = true;
         var v = map.getView();
@@ -176,7 +184,7 @@ $.getJSON(baseUrl + 'parks/points', function (p) {
             }
         }
         if (nanCheck) {
-            if(p[k].Park.size !== '') {
+            if (p[k].Park.size !== '') {
                 p[k].Park.name += ' (' + p[k].Park.size + ')';
             }
             var f = new ol.Feature({
