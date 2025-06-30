@@ -1,44 +1,39 @@
-<?php
-/* SVN FILE: $Id: flash.ctp 7805 2008-10-30 17:30:26Z AD7six $ */
-/**
- *
- * PHP versions 4 and 5
- *
- * CakePHP(tm) :  Rapid Development Framework (http://www.cakephp.org)
- * Copyright 2005-2008, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
- *
- * Licensed under The MIT License
- * Redistributions of files must retain the above copyright notice.
- *
- * @filesource
- * @copyright     Copyright 2005-2008, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
- * @link          http://www.cakefoundation.org/projects/info/cakephp CakePHP(tm) Project
- * @package       cake
- * @subpackage    cake.cake.libs.view.templates.layouts
- * @since         CakePHP(tm) v 0.10.0.1076
- * @version       $Revision: 7805 $
- * @modifiedby    $LastChangedBy: AD7six $
- * @lastmodified  $Date: 2008-10-31 01:30:26 +0800 (五, 31 10月 2008) $
- * @license       http://www.opensource.org/licenses/mit-license.php The MIT License
- */
-?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="zh-TW" class="govuk-template">
     <head>
-        <?php echo $this->Html->charset(); ?>
+        <meta charset="utf-8">
         <title><?php echo $page_title; ?></title>
-
-
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#0b0c0c">
+        
+        <link rel="shortcut icon" sizes="16x16 32x32 48x48" href="<?php echo $this->Html->url('/favicon.ico'); ?>" type="image/x-icon">
+        <link rel="mask-icon" href="<?php echo $this->Html->url('/images/govuk-icon-mask.svg'); ?>" color="#0b0c0c">
+        <link rel="apple-touch-icon" sizes="180x180" href="<?php echo $this->Html->url('/images/govuk-icon-180.png'); ?>">
+        
+        <?php echo $this->Html->css('govuk-frontend.min'); ?>
+        
         <?php if (Configure::read() == 0) { ?>
             <meta http-equiv="Refresh" content="<?php echo $pause ?>;url=<?php echo $url ?>"/>
         <?php } ?>
-        <style><!--
-            P { text-align:center; font:bold 1.1em sans-serif }
-            A { color:#444; text-decoration:none }
-            A:HOVER { text-decoration: underline; color:#44E }
-            --></style>
     </head>
-    <body>
-        <p><a href="<?php echo $url ?>"><?php echo $message ?></a></p>
+    <body class="govuk-template__body">
+        <script>document.body.className += ' js-enabled' + ('noModule' in HTMLScriptElement.prototype ? ' govuk-frontend-supported' : '');</script>
+        
+        <div class="govuk-width-container">
+            <main class="govuk-main-wrapper" id="main-content" role="main">
+                <div class="govuk-grid-row">
+                    <div class="govuk-grid-column-two-thirds govuk-grid-column-two-thirds-from-desktop">
+                        <div class="govuk-panel govuk-panel--confirmation">
+                            <div class="govuk-panel__body">
+                                <a href="<?php echo $url ?>" class="govuk-link govuk-link--no-visited-state"><?php echo $message ?></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+        
+        <?php echo $this->Html->script('govuk-frontend.min'); ?>
+        <script>window.GOVUKFrontend.initAll()</script>
     </body>
 </html>
