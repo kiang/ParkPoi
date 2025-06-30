@@ -1,15 +1,17 @@
-<div id="IssuesView">
-    <h3><?php echo __('View 回報表單', true); ?></h3><hr />
-    <div class="col">
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-xl"><?php echo __('View 回報表單', true); ?></h1>
+        <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible" />
+        <dl class="govuk-summary-list">
 
-        <div class="col">許可證</div>
-        <div class="col"><?php
-            if ($this->data['Issue']['license_id']) {
-
-                echo $this->data['Issue']['license_id'];
-            }
-            ?>&nbsp;
-        </div>
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">許可證</dt>
+                <dd class="govuk-summary-list__value"><?php
+                    if ($this->data['Issue']['license_id']) {
+                        echo $this->data['Issue']['license_id'];
+                    }
+                    ?></dd>
+            </div>
         <div class="col">外部許可證</div>
         <div class="col"><?php
             if ($this->data['Issue']['license_uuid']) {
@@ -154,19 +156,20 @@
             }
             ?>&nbsp;
         </div>
-    </div>
-    <div class="btn-group">
-        <?php echo $this->Html->link(__('回報表單 List', true), array('action' => 'index'), array('class' => 'btn btn-secondary')); ?>
-    </div>
-    <div id="IssuesViewPanel"></div>
-    <script type="text/javascript">
-        //<![CDATA[
-        $(function () {
-            $('a.IssuesViewControl').click(function () {
-                $('#IssuesViewPanel').parent().load(this.href);
-                return false;
+        </dl>
+        <div class="govuk-button-group">
+            <?php echo $this->Html->link(__('回報表單 List', true), array('action' => 'index'), array('class' => 'govuk-button govuk-button--secondary')); ?>
+        </div>
+        <div id="IssuesViewPanel"></div>
+        <script type="text/javascript">
+            //<![CDATA[
+            $(function () {
+                $('a.IssuesViewControl').click(function () {
+                    $('#IssuesViewPanel').parent().load(this.href);
+                    return false;
+                });
             });
-        });
-        //]]>
-    </script>
+            //]]>
+        </script>
+    </div>
 </div>
