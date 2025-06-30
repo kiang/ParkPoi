@@ -17,11 +17,14 @@
             <section id="photos" class="govuk-grid-row">
             <?php
             foreach ($items as $item) {
-                echo '<div class="govuk-grid-column-one-quarter">';
+                echo '<div class="govuk-grid-column-one-third" style="margin-bottom: 30px;">';
+                echo '<div style="border: 1px solid #b1b4b6; padding: 10px; border-radius: 4px;">';
                 echo $this->Html->link(
-                  $this->Olc->imgLink('pic', $item['Issue']['pic'], "{$item['Issue']['title']}@{$park['Park']['name']}"),
+                  $this->Olc->imgLink('pic', $item['Issue']['pic'], "{$item['Issue']['title']}@{$park['Park']['name']}", array('style' => 'width: 100%; height: auto; display: block;')),
                   '/admin/issues/view/' . $item['Issue']['id'],
                   array('escape' => false, 'title' => "{$item['Issue']['title']}@{$park['Park']['name']}", 'class' => 'govuk-link'));
+                echo '<p class="govuk-body-s" style="margin-top: 10px; margin-bottom: 0;">' . h($item['Issue']['title']) . '</p>';
+                echo '</div>';
                 echo '</div>';
             }
             ?>
